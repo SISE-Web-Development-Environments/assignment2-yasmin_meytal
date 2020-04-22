@@ -1,4 +1,4 @@
-let aboutDialog = document.getElementById("about");
+var aboutDialog = document.getElementById("about");
 
 function openAboutDialog() {
     document.getElementById("about").showModal();
@@ -7,7 +7,7 @@ function closeAboutDialog() {
     document.getElementById("about").close();
 }
 /*window.onclick = function(event) {
-    if (event.target == document.getElementById("about")) {
+    if (event.target == aboutDialog) {
         aboutDialog.style.display = "none";
     }
 }*/
