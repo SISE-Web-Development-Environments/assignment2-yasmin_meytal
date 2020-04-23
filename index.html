@@ -25,6 +25,7 @@
 
 		<!-- CSS File -->
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/formStyle.css"/>
 
 		<script src="js/formValidtor.js" type="text/javascript"></script>
 		<script src="js/switchDiv.js" type="text/javascript"></script>
@@ -38,7 +39,7 @@
 			<li><a id="menuWelcome" href="#"> Welcome </a></li>
 			<li><a id="menuRegister" href="#"> Register </a></li>
 			<li><a id="menuLogin" href="#"> Login </a></li>
-			<li><a id="menuAbout" href="#about" onclick="openAboutDialog()"> About </a></li>
+			<li><a id="menuAbout" href="#" onclick="openAboutDialog()"> About </a></li>
 		</ul>
 	</menu>
 
@@ -68,31 +69,51 @@
 
 			<div id="register" style="display: none">
 				<form class="forms" id="register_form" autocomplete="off">
+					<h3 class="titleForm"><strong>Register</strong></h3><br>
+					<div class="fields" id="reg">
+					<input name="first_name" id="first_name"  placeholder="First Name" type="text"><br>
 					<label for="first_name">First Name</label><br>
-					<input name="first_name" id="first_name" placeholder="First Name" type="text"><br>
+
+					<input name="last_name" id="last_name"  placeholder="Last Name" type="text"><br>
 					<label for="last_name">Last Name</label><br>
-					<input name="last_name" id="last_name" placeholder="Last Name" type="text"><br>
+
+
+					<input name="user_name" id="user_name"  placeholder="User Name" type="text"><br>
 					<label for="user_name">Username</label><br>
-					<input name="user_name" id="user_name" placeholder="User Name" type="text"><br>
-					<label for="password">Password</label><br>
+
+
 					<input name="password" id="password" placeholder="Password" type="password"><br>
-					<label for="confirm_password">Confirm Password</label><br>
+					<label for="password">Password</label><br>
+
 					<input name="confirm_password" id="confirm_password" placeholder="Confirm Password" type="password"><br>
+					<label for="confirm_password">Confirm Password</label><br>
+
+					<input name="email" id="email" class="input"  placeholder="Email address" type="text"><br>
 					<label for="email">Email</label><br>
-					<input name="email" id="email" placeholder="Email address" type="text"><br>
+
+					<input name="birthday" id="birthday"  placeholder="Birthday" type="date"><br>
 					<label for="birthday">Birthday</label><br>
-					<input name="birthday" id="birthday" placeholder="Birthday" type="date">
-					<br><br><br>
-					<input class="button_sub" id="submit_register" type="submit" value="submit">
+					<br>
+					</div>
+
+					<div class="buttonForm" id="buttonReg">
+					<input class="button_sub" id="submit_register"  type="submit" value="  Submit  ">
+					</div>
+
 				</form>
 			</div>
 
 			<div id="login" style="display: none">
 				<form class="forms" id="login_form" autocomplete="off">
-					<h2>Login</h2>
-					<div><input name="login_user_name" id="login_user_name" placeholder="User Name" type="text"></div>
-					<div><input name="login_password" id="login_password" placeholder="Password" type="password"></div>
-					<div><input class="button_sub" id="submit_login" type="submit" value="Sign In"></div>
+					<h2 class="titleForm"><strong>Login</strong></h2><br>
+					<div class="fields" id="log">
+					<input name="login_user_name" id="login_user_name" placeholder="User Name" type="text"><br><br>
+					<input name="login_password" id="login_password" placeholder="Password" type="password">
+					</div>
+					<br><br>
+					<div class="buttonForm" id="buttonLog">
+						<input class="button_sub" id="submit_login" type="submit" value="Sign In">
+					</div>
 				</form>
 			</div>
 
