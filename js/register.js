@@ -13,19 +13,15 @@ $().ready(function() {
 
     $.validator.addMethod('strongPassword', function(value, element) {
         return this.optional(element)
-            || value.length >= 6
-            && /\d/.test(value)
-            && /[A-Z]/i.test(value) || /[a-z]/i.test(value);
+            || value.length >= 6 && /\d/.test(value) && /[A-Z]/i.test(value) || /[a-z]/i.test(value);
     }, 'Must contain at least one number and one letter, and at least 6 characters.')
 
     $.validator.addMethod('no_number', function(value, element) {
-            return this.optional(element)
-                && /[A-Z]/i.test(value) || /[a-z]/i.test(value);
+            return this.optional(element) && /[A-Z]/i.test(value) || /[a-z]/i.test(value);
         },
 
-        $.validator.addMethod('userExist', function(value, element) {
-            return this.optional(element)
-                || !(value in users);
+    $.validator.addMethod('userExist', function(value, element) {
+            return this.optional(element) || !(value in users);
         }, 'User name exist, please choose a different name.'),
 
     // validate signup form on keyup and submit
@@ -90,13 +86,13 @@ $().ready(function() {
 });
 
 // propose username by combining first- and lastname
-$("#user_name").focus(function() {
-    var firstname = $("#first_name").val();
-    var lastname = $("#last_name").val();
-    if (firstname && lastname && !this.value) {
-        this.value = firstname + "." + lastname;
-    }
-});
+// $("#user_name").focus(function() {
+//     var firstname = $("#first_name").val();
+//     var lastname = $("#last_name").val();
+//     if (firstname && lastname && !this.value) {
+//         this.value = firstname + "." + lastname;
+//     }
+// });
 
 function submit(){
     $('#register_form').hide();
