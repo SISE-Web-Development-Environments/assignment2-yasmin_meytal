@@ -30,24 +30,29 @@
 
 	<body>
 
+
+
 	<menu id="menu">
 		<ul id="menuTitles">
 			<li><a id="menuWelcome" href="#"> Welcome </a></li>
 			<li><a id="menuRegister" href="#"> Register </a></li>
 			<li><a id="menuLogin" href="#"> Login </a></li>
-			<li><a id="menuAbout" href="#" onclick="openAboutDialog()"> About </a></li>
+			<li><a id="menuAbout" href="#"> About </a></li>
 		</ul>
 	</menu>
 
-
 	<dialog id="about">
-		<h3>About</h3>
-		<br>
-		<P>
-			Meytal and Yasmin project<br>
-		</P>
-		<br>
-		<button id="closeAbout" onclick="closeAboutDialog()">Close</button>
+		<div class="aboutContent">
+			<span class="close">&times;</span>
+			<br>
+			<h3>About</h3>
+			<br>
+			<P>
+				Meytal and Yasmin project<br>
+			</P>
+			<br>
+		</div>
+
 	</dialog>
 
 	<main role="main" class="container">

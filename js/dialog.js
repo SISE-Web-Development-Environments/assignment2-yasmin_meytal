@@ -1,17 +1,25 @@
-let aboutDialog = document.getElementById("about");
+var aboutDialog = document.getElementById("about");
+var aboutBtn = document.getElementById("menuAbout");
+var closeBtn = document.getElementsByClassName("close")[0];
 
-
-
-function openAboutDialog() {
-    window.getElementById("about").showModal();
-}
-function closeAboutDialog() {
-    window.getElementById("about").close();
+aboutBtn.onclick = function () {
+    aboutDialog.style.display = "block";
 }
 
-window.onkeydown =function( event ) {
+closeBtn.onclick = function () {
+    aboutDialog.style.display = "none";
+}
+
+window.onclick =function( event ) {
     // ESCAPE key pressed
     if (event.keyCode == 27) {
+        aboutDialog.style.display = "none";
+    }
+}
+
+// clicks outside of the modal
+window.onclick = function (event) {
+    if (event.target == aboutDialog) {
         aboutDialog.style.display = "none";
     }
 }
