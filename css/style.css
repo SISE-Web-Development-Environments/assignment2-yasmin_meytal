@@ -2,13 +2,26 @@
     padding: 130px 0;
 }
 
-.menu {
+menu {
+    /*
     mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+    */
     margin: 0;
     min-width: 768px;
     top: 0;
     left: 0;
     right: 0;
+    position: fixed;
+    box-sizing: border-box;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(90deg, #ffffff 0%, lightblue 25%, lightblue 75%, #ffffff 100%);
+    font-size: 120%;
+    font-weight: bold;
+}
+
+menu ul{
+    text-align: center;
 }
 
 menu ul li
@@ -19,9 +32,22 @@ menu ul li
     flex: 1 0 auto;
 }
 
-menu ul{
-    text-align: center;
+menu ul li a
+{
+    color: #005c99;
+    padding: 18px;
 }
+
+menu ul li a:hover
+{
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1), inset 0 0 2px rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1.62rem 1.1rem;
+    text-decoration: none;
+}
+
+
 
 div
 {
@@ -30,3 +56,4 @@ div
     background: transparent;
     text-align: center;
 }
+

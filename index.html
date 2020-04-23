@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
+		<title>PAC-MAN</title>
+		<link rel="shortcut icon" type="image/png" href="images/favicon.ico">
 		<meta charset="utf-8">
 		<meta name="author" content="Meytal&Yamin"/>
-		<title>M&Y PAC-MAN</title>
 		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
 		<script src="js/dialog.js"></script>
@@ -13,11 +13,6 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
 		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-
-		<!-- Font Awesome icons-->
-<!--
-		<script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
--->
 
 		<!-- Bootstrap CSS-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -34,6 +29,7 @@
 
 
 	<body>
+
 	<menu id="menu">
 		<ul id="menuTitles">
 			<li><a id="menuWelcome" href="#"> Welcome </a></li>
@@ -42,6 +38,7 @@
 			<li><a id="menuAbout" href="#" onclick="openAboutDialog()"> About </a></li>
 		</ul>
 	</menu>
+
 
 	<dialog id="about">
 		<h3>About</h3>
@@ -55,13 +52,17 @@
 
 	<main role="main" class="container">
 		<content>
-
-
+			<br>
+			<br>
+			<br>
+			<br>
 			<div id="welcome" style="display: block">
 				<p>
+
 				<h1>Welcome to our Pac-Man game<br/></h1>
 				</p>
 				<div>
+					<br/>
 					<button class="button_sub" id="login_btn" type="button">Login</button>
 					<button class="button_sub" id="register_btn" type="button">Register</button>
 				</div>
