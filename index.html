@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>PAC-MAN</title>
-		<link rel="shortcut icon" type="image/png" href="images/favicon.ico">
 		<meta charset="utf-8">
 		<meta name="author" content="Meytal&Yamin"/>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
+		<title>M&Y PAC-MAN</title>
+
+		<!-- our .js files-->
 		<script type="text/javascript" src="js/app.js"></script>
 		<script src="js/dialog.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+		<script src="js/register.js"></script>
+		<script src="js/welcome.js"></script>
+
+		<!-- jQuery source-->
+		<script src="./jquery-3.4.1.slim.min.js"></script>
 		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
 		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+
+
+		<!-- Font Awesome icons-->
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Luckiest+Guy" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 		<!-- Bootstrap CSS-->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -21,55 +30,30 @@
 		<!-- CSS File -->
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="css/formStyle.css"/>
-
-		<script src="js/formValidtor.js" type="text/javascript"></script>
-		<script src="js/switchDiv.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="css/welcomeStyle.css"/>
 
 	</head>
 
 
 	<body>
-
-
-
 	<menu id="menu">
 		<ul id="menuTitles">
-			<li><a id="menuWelcome" href="#"> Welcome </a></li>
-			<li><a id="menuRegister" href="#"> Register </a></li>
-			<li><a id="menuLogin" href="#"> Login </a></li>
-			<li><a id="menuAbout" href="#"> About </a></li>
+			<li><a id="menuWelcome" href="#">   Welcome   </a></li>
+			<li><a id="menuRegister" href="#">   Register   </a></li>
+			<li><a id="menuLogin" href="#">   Login   </a></li>
+			<li><a id="menuAbout" href="#" onclick="openAboutDialog()">   About   </a></li>
+			<li><a id="menuContant" href="#" onclick="openAboutDialog()">   Contact   </a></li>
 		</ul>
 	</menu>
 
-	<dialog id="about">
-		<div class="aboutContent">
-			<span class="close">&times;</span>
-			<br>
-			<h3>About</h3>
-			<br>
-			<P>
-				Meytal and Yasmin project<br>
-			</P>
-			<br>
-		</div>
-
-	</dialog>
-
 	<main role="main" class="container">
 		<content>
-			<br>
-			<br>
-			<br>
-			<br>
-			<div id="welcome" style="display: block">
-				<p>
 
-				<h1>Welcome to our Pac-Man game<br/></h1>
-				</p>
+
+			<div id="welcome" class="welcome" style="display: block">
 				<div>
-					<br/>
-					<button class="button_sub" id="login_btn" type="button">Login</button>
-					<button class="button_sub" id="register_btn" type="button">Register</button>
+					<button class="button_wel" id="login_btn" type="button">Login</button><br>
+					<button class="button_wel" id="register_btn" type="button">Register</button>
 				</div>
 			</div>
 
@@ -126,6 +110,20 @@
 
 		</content>
 	</main>
+
+	<dialog id="about">
+		<h3>About</h3>
+		<br>
+		<P>
+			Meytal and Yasmin project<br>
+		</P>
+		<br>
+		<button id="closeAbout" onclick="closeAboutDialog()">Close</button>
+	</dialog>
+
+	<div class="downPage">
+		Product By Meytal Yaniv & Yasmin Avraham    © 2020
+	</div>
 
 
 <!--		<div id="score">
