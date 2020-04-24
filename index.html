@@ -42,7 +42,7 @@
 			<li><a id="menuRegister" href="#">   Register   </a></li>
 			<li><a id="menuLogin" href="#">   Login   </a></li>
 			<li><a id="menuAbout" href="#" onclick="openAboutDialog()">   About   </a></li>
-			<li><a id="menuContant" href="#" onclick="openAboutDialog()">   Contact   </a></li>
+			<li><a id="menuContact" href="#" onclick="openAboutDialog()">   Contact   </a></li>
 		</ul>
 	</menu>
 
@@ -118,7 +118,19 @@
 			Meytal and Yasmin project<br>
 		</P>
 		<br>
-		<button id="closeAbout" onclick="closeAboutDialog()">Close</button>
+		<button id="closeAbout" class="close" >Close</button>
+	</dialog>
+
+	<dialog id="contact">
+		<img id="contactImage" src="images/contact.png">
+		<h3>Contact With Us!</h3>
+		<br>
+		<P>
+			Yasmin: yasminav@post.bgu.ac.il<br>
+			Meytal: meshumey@post.bgu.ac.il
+		</P>
+		<br>
+		<button id="closeContact" class="close" >Close</button>
 	</dialog>
 
 	<div class="downPage">

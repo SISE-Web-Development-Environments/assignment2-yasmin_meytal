@@ -3,23 +3,26 @@ main .welcome .button_wel{
     font-family: "Luckiest Guy";
     font-style: normal;
     font-variant: normal;
-    background-color: white;
+    background-color: #ffcc00;
     color: black;
     border: 20px;
     border-color: #ffcc00;
     font-size: 20px;
+    border-radius: 12px;
 
 
 }
+
+
 main .welcome div #register_btn{
     position: absolute;
-    left: 0;
-    top: 80%;
+    left: 40%;
+    top: 75%;
     /*width: 50%;*/
 }
 main .welcome #login_btn{
     position: absolute;
-    left: 0;
-    top: 85%;
+    left: 40%;
+    top: 80%;
     /*width: 50%;*/
 }

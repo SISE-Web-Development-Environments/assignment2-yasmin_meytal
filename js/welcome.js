@@ -31,4 +31,5 @@ function hidefunc(){
     $('#login').hide();
     $('#register').hide();
     $('#about').hide();
+    $('#contact').hide();
 };

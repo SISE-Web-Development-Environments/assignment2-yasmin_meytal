@@ -31,10 +31,12 @@ menu ul li a{
     font-family: "Luckiest Guy";
     font-style: normal;
     font-variant: normal;
-    font-size: 24px;
+    font-size: 30px;
+    text-decoration: none;
 }
 menu ul li a:hover{
     color: #ffcc00;
+    text-decoration: none;
 }
 
 menu ul{
