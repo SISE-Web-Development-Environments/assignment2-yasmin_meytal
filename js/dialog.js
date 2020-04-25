@@ -16,25 +16,9 @@ closeBtn.onclick = function () {
     $('#welcome').show();
 }
 
-window.onclick =function( event ) {
-    // ESCAPE key pressed
-    if (event.keyCode == 27) {
-        aboutDialog.style.display = "none";
-    }
-}
-
-// clicks outside of the modal
 window.onclick = function (event) {
-    if (event.target == aboutDialog) {
-        aboutDialog.style.display = "none";
-        contactDialog.style.display= "none"
-    }
-}
-
-// clicks outside of the modal
-window.onclick = function (event) {
-    if (event.target == aboutDialog) {
-        aboutDialog.style.display = "none";
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
 }
 
@@ -48,3 +32,22 @@ closeBtnC.onclick = function () {
     contactDialog.style.display = "none";
     $('#welcome').show();
 }
+
+// ESCAPE key pressed
+$(document).keydown(function (event) {
+    var code = event.keyCode || event.which;
+    if (code == 27){
+        aboutDialog.style.display = "none";
+        contactDialog.style.display = "none";
+    }
+})
+
+// clicks outside of the modal
+window.onclick = function (event) {
+    if (event.target == aboutDialog ||event.target == contactDialog) {
+        aboutDialog.style.display = "none";
+        contactDialog.style.display= "none";
+    }
+}
+
+
