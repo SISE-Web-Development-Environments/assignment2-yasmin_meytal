@@ -1,6 +1,7 @@
 var register_validate = null
 var login_validate = null
 var users = {'a':'a'};
+var cur_user= null;
 
 $.validator.setDefaults({
     submitHandler: function() {
@@ -86,13 +87,13 @@ $().ready(function() {
 });
 
 // propose username by combining first- and lastname
-// $("#user_name").focus(function() {
-//     var firstname = $("#first_name").val();
-//     var lastname = $("#last_name").val();
-//     if (firstname && lastname && !this.value) {
-//         this.value = firstname + "." + lastname;
-//     }
-// });
+ $("#user_name").focus(function() {
+     var firstname = $("#first_name").val();
+     var lastname = $("#last_name").val();
+     if (firstname && lastname && !this.value) {
+         this.value = firstname + "." + lastname;
+     }
+ });
 
 function submit(){
     $('#register_form').hide();
@@ -109,14 +110,34 @@ function confirm_password() {
     var user_name = document.getElementById('login_user_name').value;
     if (user_name in users){
         var password = document.getElementById('login_password').value;
-        if (password == users[name]){
+        if (password == users[user_name]){
             return true;
         }
     }
     return false;
 }
 
-function login() {
 
-}
-
+$(function() {
+    login_validate = $("#login_form").validate({
+        rules: {
+            login_user_name: {
+                required: true,
+                nowhitespace: true
+            },
+            login_password: {
+                required: true
+            }
+        },
+        submitHandler: function(form) {
+            if (confirm_password()){
+///////////////////////enter game///////////////////////////////
+            }
+            else{
+                alert('Username or password is incorrecte.');
+                document.getElementById('login_user_name').value = '';
+                document.getElementById('login_password').value = '';
+            }
+        }
+    });
+});
