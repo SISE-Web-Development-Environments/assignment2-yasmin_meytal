@@ -32,4 +32,6 @@ function hidefunc(){
     $('#register').hide();
     $('#about').hide();
     $('#contact').hide();
+    $('#game').hide();
+    $('#settings').hide();
 };
