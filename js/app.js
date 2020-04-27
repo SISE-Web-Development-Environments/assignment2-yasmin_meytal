@@ -6,6 +6,9 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var pac_movement=6;
+var life=5;
+
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
@@ -13,6 +16,7 @@ $(document).ready(function() {
 });
 
 function Start() {
+
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -20,16 +24,14 @@ function Start() {
 	var food_remain = 50;
 	var pacman_remain = 1;
 	start_time = new Date();
+	updateHearts();
+	setUsername();
 	for (var i = 0; i < 10; i++) {
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
 			if (
-				(i == 3 && j == 3) ||
-				(i == 3 && j == 4) ||
-				(i == 3 && j == 5) ||
-				(i == 6 && j == 1) ||
-				(i == 6 && j == 2)
+				i==0 || j==0 || i==10-1 || j==10-1
 			) {
 				board[i][j] = 4;
 			} else {
@@ -84,15 +86,19 @@ function findRandomEmptyCell(board) {
 
 function GetKeyPressed() {
 	if (keysDown[38]) {
+		pac_movement=1;
 		return 1;
 	}
 	if (keysDown[40]) {
+		pac_movement=2;
 		return 2;
 	}
 	if (keysDown[37]) {
+		pac_movement=3;
 		return 3;
 	}
 	if (keysDown[39]) {
+		pac_movement=4;
 		return 4;
 	}
 }
@@ -107,15 +113,7 @@ function Draw() {
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
 			if (board[i][j] == 2) {
-				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
-				context.lineTo(center.x, center.y);
-				context.fillStyle = pac_color; //color
-				context.fill();
-				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
-				context.fill();
+				DrawPacman(context,center.x,center.y);
 			} else if (board[i][j] == 1) {
 				context.beginPath();
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
@@ -134,22 +132,22 @@ function Draw() {
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
-	if (x == 1) {
+	if (x == 1) {//left
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
 		}
 	}
-	if (x == 2) {
+	if (x == 2) {//right
 		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 		}
 	}
-	if (x == 3) {
+	if (x == 3) {//up
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != 4) {
 			shape.i--;
 		}
 	}
-	if (x == 4) {
+	if (x == 4) {//down
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 		}
@@ -169,4 +167,101 @@ function UpdatePosition() {
 	} else {
 		Draw();
 	}
+
+
+}
+
+function DrawPacman(ctx, x, y) {
+	ctx.beginPath();
+	if (pac_movement==1) {
+		ctx.arc(x, y, 25, 1.65 * Math.PI, 1.35 * Math.PI);
+		ctx.lineTo(x, y);
+		ctx.fillStyle = pac_color; //color
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(x - 15, y - 5, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "black"; //color
+		ctx.fill();
+	}
+	else if (pac_movement==2) {
+		ctx.arc(x, y, 25, 0.65 * Math.PI, 0.35 * Math.PI);
+		ctx.lineTo(x, y);
+		ctx.fillStyle = pac_color; //color
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(x + 15, y - 5, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "black"; //color
+		ctx.fill();
+	}
+	else if (pac_movement==4) {
+		ctx.arc(x, y, 25, 0.15 * Math.PI, 1.85 * Math.PI);
+		ctx.lineTo(x, y);
+		ctx.fillStyle = pac_color; //color
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(x + 5, y - 15, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "black"; //color
+		ctx.fill();
+	}
+	else if (pac_movement==3) {
+		ctx.arc(x, y, 25, 1.15 * Math.PI, 0.85 * Math.PI);
+		ctx.lineTo(x, y);
+		ctx.fillStyle = pac_color; //color
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(x - 5, y - 15, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "black"; //color
+		ctx.fill();
+	}
+	else{
+		ctx.arc(x, y, 25, 0.15 * Math.PI, 1.85 * Math.PI);
+		ctx.lineTo(x, y);
+		ctx.fillStyle = pac_color; //color
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(x + 5, y - 15, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "black"; //color
+		ctx.fill();
+	}
+	ctx.closePath();
+
+}
+
+function updateHearts() {
+	var canvas = document.getElementById('lblHeart');
+	var img = document.getElementById("heart");
+	var ctx = canvas.getContext('2d');
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	if(life==1){
+		ctx.drawImage(img, 0, 30, 60, 140);
+	}
+	else if(life==2){
+		ctx.drawImage(img, 0, 30, 60, 140);
+		ctx.drawImage(img, 70, 30, 60, 140);
+	}
+	else if(life==3){
+		ctx.drawImage(img, 0, 30, 60, 140);
+		ctx.drawImage(img, 70, 30, 60, 140);
+		ctx.drawImage(img, 140, 30, 60, 140);
+	}
+	else if(life==4){
+		ctx.drawImage(img, 0, 30, 60, 140);
+		ctx.drawImage(img, 70, 30, 60, 140);
+		ctx.drawImage(img, 140, 30, 60, 140);
+		ctx.drawImage(img, 210, 30, 60, 140);
+	}
+	else if(life==5){
+		ctx.drawImage(img, 0, 20, 60, 140);
+		ctx.drawImage(img, 70, 20, 60, 140);
+		ctx.drawImage(img, 140, 20, 60, 140);
+		ctx.drawImage(img, 210, 20, 60, 140);
+		ctx.drawImage(img, 280, 20, 60, 140);
+	}
+
+
+
+}
+function setUsername() {
+	lblWelcome.value="TEST";//put the username/?????????????????????????????????????/
 }

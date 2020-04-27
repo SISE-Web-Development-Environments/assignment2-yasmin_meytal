@@ -70,6 +70,7 @@ $(function() {
         },
         submitHandler: function(form) {
             set_values();
+            //startGame();
 
             initBoard();
 
@@ -124,6 +125,14 @@ $("#random").click(function() {
     document.getElementById('point_color_15').value = getRandomColor();
     document.getElementById('point_color_25').value = getRandomColor();
 });
+function startPlay(){
+         hidefunc();
+     $("#gameBoard").show();
+}
+// document.getElementById("startGame").click(function () {
+//     hidefunc();
+//     $("#gameBoard").show();
+// });
 
 $("#pre_up").click(function() {
     $('#change_key_div').show();

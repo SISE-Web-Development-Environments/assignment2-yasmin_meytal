@@ -98,6 +98,11 @@ function submit(){
     $('#login').show();
 }
 
+function startGame() {
+    $('#settings').hide();
+    $('#gameBoard').show();
+}
+
 function add_user(){
     users[document.getElementById('user_name').value]=document.getElementById('password').value;
 }

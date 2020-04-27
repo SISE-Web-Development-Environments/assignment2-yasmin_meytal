@@ -145,12 +145,42 @@
                         <br>
                         <div class="buttonForm" id="buttonSet">
                             <input class="button_sub" id="random" type="button" value="Random">
-                            <input class="button_sub" id="startGame"  type="submit" value="Start!">
+                            <input class="button_sub" id="startGame"  type="submit" value="Start!" ">
                         </div>
+
+
 
 
 					</form>
 				</div>
+
+				<div id="gameBoard" style="display: none" >
+
+					<div id="player">
+						<label for="lblWelcome">WELCOME:</label>
+						<input id="lblWelcome" type="text" />
+					</div>
+					<div>
+						<div >
+							<label  id="score" for="lblScore">SCORE:</label>
+							<input id="lblScore" type="text" />
+
+							<label  id="timer" for="lblTime">TIME:</label>
+							<input id="lblTime" type="text" />
+
+							<label id="life">LIFE: </label>
+							<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas>
+							<img id="heart" src="images/heart.png" style="display: none">
+						</div>
+					</div>
+					<div id="gameCanvas">
+						<canvas id="canvas" height="600" width="600"></canvas>
+						<img class="ghost" id="ghost1" src="images/PINKY.gif" style="display: none">
+						<img class="ghost" id="ghost2" src="images/BLINKY.gif" style="display: none">
+						<img class="ghost" id="ghost3" src="images/INKY.gif" style="display: none">
+
+					</div>
+
 			</div>
 
 
