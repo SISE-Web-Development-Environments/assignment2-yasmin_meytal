@@ -3,6 +3,8 @@ var login_validate = null
 var users = {'a':'a'};
 var cur_user= null;
 
+users["p"]="p";
+
 
 
 $().ready(function() {
