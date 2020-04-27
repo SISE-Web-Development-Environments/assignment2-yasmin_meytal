@@ -3,11 +3,6 @@ var login_validate = null
 var users = {'a':'a'};
 var cur_user= null;
 
-$.validator.setDefaults({
-    submitHandler: function() {
-        alert("submitted!");
-    }
-});
 
 
 $().ready(function() {
@@ -82,7 +77,6 @@ $().ready(function() {
         submitHandler: function(form) {
             submit();
         }
-
     }))
 });
 
@@ -96,9 +90,10 @@ $().ready(function() {
  });
 
 function submit(){
-    $('#register_form').hide();
+    alert("submitted!");
+    $('#register').hide();
     add_user();
-    $('#login_form').show();
+    $('#login').show();
 }
 
 function add_user(){
@@ -132,6 +127,13 @@ $(function() {
         submitHandler: function(form) {
             if (confirm_password()){
 ///////////////////////enter game///////////////////////////////
+                cur_user = document.getElementById('login_user_name').value;
+
+                $('#login').hide();
+                $('#game').show();
+                $('#load_gif').show();
+               // document.getElementById('Player').value = cur_user;
+                setTimeout(game_settings,3000);
             }
             else{
                 alert('Username or password is incorrecte.');
@@ -141,3 +143,18 @@ $(function() {
         }
     });
 });
+
+function game_settings(){
+    $('#load_gif').hide();
+    document.getElementById('num_balls').value = '';
+    document.getElementById('num_ghost').value = '';
+    document.getElementById('time').value = '';
+    up = 'ArrowUp';
+    right = 'ArrowRight';
+    left = 'ArrowLeft';
+    down = 'ArrowDown';
+    document.getElementById('point_color_5').value = "#ffffff";
+    document.getElementById('point_color_15').value = "#1900ff";
+    document.getElementById('point_color_25').value = "#e52929";
+    $('#settings').show();
+}

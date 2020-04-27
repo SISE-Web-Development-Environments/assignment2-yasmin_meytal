@@ -99,14 +99,49 @@
 				<form class="forms" id="login_form" autocomplete="off">
 					<h2 class="titleForm"><strong>Login</strong></h2><br>
 					<div class="fields" id="log">
-					<input name="login_user_name" id="login_user_name" placeholder="User Name" type="text"><br><br>
-					<input name="login_password" id="login_password" placeholder="Password" type="password">
+						<input name="login_user_name" id="login_user_name" placeholder="User Name" type="text"><br><br>
+						<input name="login_password" id="login_password" placeholder="Password" type="password">
 					</div>
 					<br><br>
 					<div class="buttonForm" id="buttonLog">
 						<input class="button_sub" id="submit_login" type="submit" value="Sign In">
 					</div>
 				</form>
+			</div>
+
+			<div id="game" style="display: none">
+				<div id="load_gif" style="display: none">
+					<img src="images/load.gif" id="loading_gif">
+				</div>
+
+				<div id="settings" style="display: none">
+					<form class="forms" id="settings_form" autocomplete="off">
+						<h2>Game Settings</h2>
+						<div class="fields" id="set">
+							<input name="num_balls" id="num_balls" placeholder="Number of balls (50-90)" type="text">
+							<input name="num_ghost" id="num_ghost" placeholder="Number of ghosts (1-4)" type="text">
+							<input name="time" id="time" placeholder="Game time in seconds (Biger then 60)" type="text">
+						</div>
+						<br>
+						<br>
+						<h4>Move the Pac-Man using the arrow keys on the keyboard, press the buttons below to change each key</h4>
+						<div><button class="button_arrow" style="font-size:24px" id="pre_up" type="button"><i class="fa fa-arrow-up"></i></button></div>
+						<div>
+							<button class="button_arrow" style="font-size:24px" id="pre_left" type="button"><i class="fa fa-arrow-left"></i></button>
+							<button class="button_arrow" style="font-size:24px" id="pre_down" type="button"><i class="fa fa-arrow-down"></i></button>
+							<button class="button_arrow" style="font-size:24px" id="pre_right" type="button"><i class="fa fa-arrow-right"></i></button>
+						</div>
+
+						<div id="change_key_div" style="display: none"><input id="change_key_input" placeholder="Click here, then press a key." type="text"></div>
+						<h4>Choose the colors of balls, The colors that are currently recommended for a fun gaming experience.</h4>
+						<div>5 Points Ball COLOR: <input type="color" name="point_color_5" id="point_color_5" value="#ffffff"></div>
+						<div>15 Points Ball COLOR: <input type="color" name="point_color_15" id="point_color_15" value="#1900ff"></div>
+						<div>25 Points Ball COLOR: <input type="color" name="point_color_25" id="point_color_25" value="#e52929"></div>
+						<div>
+							<button class="button_sub" id="random" type="button">Random</button>
+							<input class="button_sub" id="startGame" type="submit" value="Start!"></div>
+					</form>
+				</div>
 			</div>
 
 
