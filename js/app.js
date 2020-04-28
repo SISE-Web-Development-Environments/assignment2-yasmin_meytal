@@ -9,6 +9,16 @@ var interval;
 var pac_movement=6;
 var life=5;
 
+//setting from user
+var color_p5 = "#ffffff";
+var color_p15 = "#1900ff";
+var color_p25 = "#e52929";
+var balls;
+var ghosts;
+var time
+var numOfEatenFood=0;
+
+
 
 
 $(document).ready(function() {
@@ -29,7 +39,7 @@ function Start() {
 	initBoard();
 	for (var i = 0; i < 20; i++) {
 		for (var j = 0; j < 20; j++) {
-			if (board[i][j] != 4 && board[i][j] != 5) {
+			if (board[i][j] != 4 ) {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food_remain) / cnt) {
 					food_remain--;
@@ -43,37 +53,12 @@ function Start() {
 			}
 		}
 	}
-
-	// for (var i = 0; i < 10; i++) {
-	// 	board[i] = new Array();
-	// 	//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-	// 	for (var j = 0; j < 10; j++) {
-	// 		if (
-	// 			i==0 || j==0 || i==10-1 || j==10-1
-	// 		) {
-	// 			board[i][j] = 4;
-	// 		} else {
-	// 			var randomNum = Math.random();
-	// 			if (randomNum <= (1.0 * food_remain) / cnt) {
-	// 				food_remain--;
-	// 				board[i][j] = 1;
-	// 			} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
-	// 				shape.i = i;
-	// 				shape.j = j;
-	// 				pacman_remain--;
-	// 				board[i][j] = 2;
-	// 			} else {
-	// 				board[i][j] = 0;
-	// 			}
-	// 			cnt--;
-	// 		}
-	// 	}
+	//defineBalls();
+	// while (food_remain > 0) {
+	// 	var emptyCell = findRandomEmptyCell(board);
+	// 	board[emptyCell[0]][emptyCell[1]] = 1;
+	// 	food_remain--;
 	// }
-	while (food_remain > 0) {
-		var emptyCell = findRandomEmptyCell(board);
-		board[emptyCell[0]][emptyCell[1]] = 1;
-		food_remain--;
-	}
 	keysDown = {};
 	addEventListener(
 		"keydown",
@@ -93,11 +78,11 @@ function Start() {
 }
 
 function findRandomEmptyCell(board) {
-	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
+	var i = Math.floor(Math.random() * 19 + 1);
+	var j = Math.floor(Math.random() * 19 + 1);
 	while (board[i][j] != 0) {
-		i = Math.floor(Math.random() * 9 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		i = Math.floor(Math.random() * 19 + 1);
+		j = Math.floor(Math.random() * 19 + 1);
 	}
 	return [i, j];
 }
@@ -135,12 +120,22 @@ function Draw() {
 			center.y = j * 30 + 15;
 			if (board[i][j] == 2) {
 				DrawPacman(context,center.x,center.y);
-			} else if (board[i][j] == 1) {
+			} else if (board[i][j] == 5) {
 				context.beginPath();
 				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
-				context.fillStyle = "black"; //color
+				context.fillStyle =color_p5; //color
 				context.fill();
-			} else if (board[i][j] == 4) {
+			} else if (board[i][j] == 15) {
+				context.beginPath();
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
+				context.fillStyle =color_p15; //color
+				context.fill();
+			}else if (board[i][j] == 25) {
+				context.beginPath();
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
+				context.fillStyle =color_p25; //color
+				context.fill();
+			}else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 15, center.y - 15, 30, 30);
 				context.fillStyle = "grey"; //color
@@ -173,8 +168,17 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
-	if (board[shape.i][shape.j] == 1) {
-		score++;
+	if (board[shape.i][shape.j] == 5) {
+		score+=5;
+		numOfEatenFood++;
+	}
+	if (board[shape.i][shape.j] == 15) {
+		score+=15;
+		numOfEatenFood++;
+	}
+	if (board[shape.i][shape.j] == 25) {
+		score+=25;
+		numOfEatenFood++;
 	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
@@ -182,9 +186,14 @@ function UpdatePosition() {
 	if (score >= 20 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score == 50) {
+	if (numOfEatenFood==balls || score>150) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
+		score=0;
+		numOfEatenFood=0;
+		$('#gameBoard').hide();
+		$('#settings').show();
+		//??????????????????????????????????????????????// new game
 	} else {
 		Draw();
 	}
@@ -309,5 +318,43 @@ function initBoard() {
 	board[17]= [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,4];
 	board[18]= [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4];
 	board[19]= [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+	defineBalls();
 
+}
+
+function saveSettings(colorP5,colorP15, colorP25,ball,ghost,timer){
+	color_p5=colorP5;
+	color_p15=colorP15;
+	color_p25=colorP25;
+	balls=ball;
+	ghosts=ghost;
+	time=timer;
+}
+
+function defineBalls() {
+	counter = 0;
+	var b25 = Math.floor(balls * 0.1);
+	var b15 = Math.floor(balls * 0.3);
+	var b5 = Math.floor(balls * 0.6);
+	var cell;
+	for (var i = 0; i < b5; i++) {
+		cell = findRandomEmptyCell(board);
+		board[cell[0]][cell[1]] = 5;
+		counter++;
+	}
+	for (var i = 0; i < b15; i++) {
+		cell = findRandomEmptyCell(board);
+		board[cell[0]][cell[1]] = 15;
+		counter++;
+	}
+	for (var i = 0; i < b25; i++) {
+		cell = findRandomEmptyCell(board);
+		board[cell[0]][cell[1]] = 25;
+		counter++;
+	}
+	while (counter <= balls) {
+		cell = findRandomEmptyCell(board);
+		board[cell[0]][cell[1]] = 5;
+		counter++;
+	}
 }

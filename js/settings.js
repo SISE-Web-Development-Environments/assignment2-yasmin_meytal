@@ -87,6 +87,7 @@ function set_values(){
     color_p5 = document.getElementById('point_color_5').value;
     color_p15 = document.getElementById('point_color_15').value;
     color_p25 = document.getElementById('point_color_25').value;
+    saveSettings(color_p5,color_p15,color_p25,balls,ghosts,time);
 }
 
 function initBoard() {
