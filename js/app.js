@@ -182,10 +182,22 @@ function UpdatePosition() {
 	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
-	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 20 && time_elapsed <= 10) {
-		pac_color = "green";
-	}
+	let currTime=(currentTime - start_time) / 1000;
+	time_elapsed = time-currTime;
+	// if (score >= 20 && time_elapsed <= 10) {
+	// 	pac_color = "green";
+	// }
+
+
+	// if(time_elapsed<=0){
+	// 	window.clearInterval(interval);
+	// 	window.alert("You Lost!");
+	// 	score=0;
+	// 	numOfEatenFood=0;
+	// 	$('#gameBoard').hide();
+	// 	$('#settings').show();
+	// 	//??????????????????????????????????????????????// new game
+	// }
 	if (numOfEatenFood==balls || score>150) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
