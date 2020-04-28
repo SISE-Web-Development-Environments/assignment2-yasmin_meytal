@@ -58,13 +58,15 @@ h4
     color: white;
 }
 
-.downPage{
+downPage {
     position: absolute;
     bottom: 8px;
     left: 16px;
     font-size: 18px;
     color: white;
     font-family:Verdana, Geneva, sans-serif;
+
+
 }
 
 /* dialog background */

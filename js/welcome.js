@@ -34,4 +34,5 @@ function hidefunc(){
     $('#contact').hide();
     $('#game').hide();
     $('#settings').hide();
+    $('#gameBoard').hide();
 };

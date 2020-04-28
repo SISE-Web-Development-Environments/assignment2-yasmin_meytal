@@ -70,9 +70,9 @@ $(function() {
         },
         submitHandler: function(form) {
             set_values();
-            //startGame();
-
-            initBoard();
+            startPlay();
+            Start()
+            //initBoard();
 
             reset();
         }
@@ -119,15 +119,16 @@ function getRandomColor() {
 
 $("#random").click(function() {
     document.getElementById('num_balls').value = Math.ceil(Math.random() * 41) + 49;
-    document.getElementById('num_ghost').value = Math.ceil(Math.random() * 3);
+    document.getElementById('num_ghost').value = Math.ceil(Math.random() * 4);
     document.getElementById('time').value = Math.ceil(Math.random() * 121) + 59;
     document.getElementById('point_color_5').value = getRandomColor();
     document.getElementById('point_color_15').value = getRandomColor();
     document.getElementById('point_color_25').value = getRandomColor();
 });
 function startPlay(){
-         hidefunc();
-     $("#gameBoard").show();
+    $('#settings').hide();
+    $('#gameBoard').show();
+
 }
 // document.getElementById("startGame").click(function () {
 //     hidefunc();

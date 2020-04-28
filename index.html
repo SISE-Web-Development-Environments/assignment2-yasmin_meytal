@@ -1,194 +1,190 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<!-- meta-->
-		<meta charset="utf-8">
-		<meta name="author" content="Meytal&Yamin"/>
-		<title>M&Y PAC-MAN</title>
-		<link rel="shortcut icon" type="images/png" href="images/favicon.ico">
+<head>
+	<!-- meta-->
+	<meta charset="utf-8">
+	<meta name="author" content="Meytal&Yamin"/>
+	<title>M&Y PAC-MAN</title>
+	<link rel="shortcut icon" type="images/png" href="images/favicon.ico">
 
-		<!-- our .js files-->
-		<script type="text/javascript" src="js/app.js"></script>
-		<script src="js/dialog.js"></script>
-		<script src="js/register.js"></script>
-		<script src="js/welcome.js"></script>
+	<!-- our .js files-->
+	<script type="text/javascript" src="js/app.js"></script>
+	<script src="js/dialog.js"></script>
+	<script src="js/register.js"></script>
+	<script src="js/welcome.js"></script>
 
-		<!-- jQuery source-->
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-
-
-		<!-- Font Awesome icons-->
-		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Luckiest+Guy" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-		<!-- Bootstrap CSS-->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-			  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-		<!-- CSS File -->
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/formStyle.css"/>
-		<link rel="stylesheet" type="text/css" href="css/welcomeStyle.css"/>
-
-	</head>
+	<!-- jQuery source-->
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 
 
-	<body>
-	<menu id="menu">
-		<ul id="menuTitles">
-			<li><a id="menuWelcome" href="#">   Welcome   </a></li>
-			<li><a id="menuRegister" href="#">   Register   </a></li>
-			<li><a id="menuLogin" href="#">   Login   </a></li>
-			<li><a id="menuAbout" href="#" onclick="openAboutDialog()">   About   </a></li>
-			<li><a id="menuContact" href="#" onclick="openAboutDialog()">   Contact   </a></li>
-		</ul>
-	</menu>
+	<!-- Font Awesome icons-->
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Luckiest+Guy" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<main role="main" class="container">
-		<content>
+	<!-- Bootstrap CSS-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- CSS File -->
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/formStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="css/welcomeStyle.css"/>
+
+</head>
 
 
-			<div id="welcome" class="welcome" style="display: block">
-				<div>
-					<button class="button_wel" id="login_btn" type="button">Login</button><br>
-					<button class="button_wel" id="register_btn" type="button">Register</button>
-				</div>
+<body>
+<menu id="menu">
+	<ul id="menuTitles">
+		<li><a id="menuWelcome" href="#">   Welcome   </a></li>
+		<li><a id="menuRegister" href="#">   Register   </a></li>
+		<li><a id="menuLogin" href="#">   Login   </a></li>
+		<li><a id="menuAbout" href="#" onclick="openAboutDialog()">   About   </a></li>
+		<li><a id="menuContact" href="#" onclick="openAboutDialog()">   Contact   </a></li>
+	</ul>
+</menu>
+
+<main role="main" class="container">
+	<content>
+
+
+		<div id="welcome" class="welcome" style="display: block">
+			<div>
+				<button class="button_wel" id="login_btn" type="button">Login</button><br>
+				<button class="button_wel" id="register_btn" type="button">Register</button>
 			</div>
+		</div>
 
-            <div id="register" style="display: none">
-                <form class="forms" id="register_form" autocomplete="off">
-                    <h3 class="titleForm"><strong>Register</strong></h3><br>
-                    <div class="fields" id="reg">
-                        <label for="first_name">First Name</label><br>
-                        <input name="first_name" id="first_name"  placeholder="First Name" type="text"><br>
+		<div id="register" style="display: none">
+			<form class="forms" id="register_form" autocomplete="off">
+				<h3 class="titleForm"><strong>Register</strong></h3><br>
+				<div class="fields" id="reg">
+					<label for="first_name">First Name</label><br>
+					<input name="first_name" id="first_name"  placeholder="First Name" type="text"><br>
 
-                        <label for="last_name">Last Name</label><br>
-                        <input name="last_name" id="last_name"  placeholder="Last Name" type="text"><br>
+					<label for="last_name">Last Name</label><br>
+					<input name="last_name" id="last_name"  placeholder="Last Name" type="text"><br>
 
-                        <label for="user_name">Username</label><br>
-                        <input name="user_name" id="user_name"  placeholder="User Name" type="text"><br>
+					<label for="user_name">Username</label><br>
+					<input name="user_name" id="user_name"  placeholder="User Name" type="text"><br>
 
-                        <label for="password">Password</label><br>
-                        <input name="password" id="password" placeholder="Password" type="password"><br>
+					<label for="password">Password</label><br>
+					<input name="password" id="password" placeholder="Password" type="password"><br>
 
-                        <label for="confirm_password">Confirm Password</label><br>
-                        <input name="confirm_password" id="confirm_password" placeholder="Confirm Password" type="password"><br>
+					<label for="confirm_password">Confirm Password</label><br>
+					<input name="confirm_password" id="confirm_password" placeholder="Confirm Password" type="password"><br>
 
-                        <label for="email">Email</label><br>
-                        <input name="email" id="email" class="input"  placeholder="Email address" type="text"><br>
+					<label for="email">Email</label><br>
+					<input name="email" id="email" class="input"  placeholder="Email address" type="text"><br>
 
-                        <label for="birthday">Birthday</label><br>
-                        <input name="birthday" id="birthday"  placeholder="Birthday" type="date"><br>
-                        <br>
-                    </div>
+					<label for="birthday">Birthday</label><br>
+					<input name="birthday" id="birthday"  placeholder="Birthday" type="date"><br>
+					<br>
+				</div>
 
-					<div class="buttonForm" id="buttonReg">
+				<div class="buttonForm" id="buttonReg">
 					<input class="button_sub" id="submit_register"  type="submit" value="  Submit  ">
-					</div>
-
-				</form>
-			</div>
-
-			<div id="login" style="display: none">
-				<form class="forms" id="login_form" autocomplete="off">
-					<h2 class="titleForm"><strong>Login</strong></h2><br>
-					<div class="fields" id="log">
-						<input name="login_user_name" id="login_user_name" placeholder="User Name" type="text"><br><br>
-						<input name="login_password" id="login_password" placeholder="Password" type="password">
-					</div>
-					<br><br>
-					<div class="buttonForm" id="buttonLog">
-						<input class="button_sub" id="submit_login" type="submit" value="Sign In">
-					</div>
-				</form>
-			</div>
-
-			<div id="game" style="display: none">
-				<div id="load_gif" style="display: none">
-					<img src="images/load.gif" id="loading_gif">
 				</div>
 
-				<div id="settings" style="display: none">
-					<form class="forms" id="settings_form" autocomplete="off">
-                        <h2 class="titleForm"><strong>Game Settings</strong></h2><br>
-						<div class="fields" id="set">
-                            <label for="num_balls">Number of balls (50-90)</label><br>
-							<input name="num_balls" id="num_balls" placeholder="Number of balls" type="text"><br><br>
+			</form>
+		</div>
 
-                            <label for="num_ghost">Number of ghosts (1-4)</label><br>
-                            <input name="num_ghost" id="num_ghost" placeholder="Number of ghosts" type="text"><br><br>
-
-                            <label for="time">Game time in seconds (Biger then 60)</label><br>
-							<input name="time" id="time" placeholder="Time in seconds" type="text"><br><br>
-						</div>
-
-						<h4>Move the Pac-Man using the arrow keys on the keyboard</h4>
-						<h4>If you want to change the keys- press the buttons below</h4>
-						<div><button class="button_arrow" style="font-size:24px" id="pre_up" type="button"><i class="fa fa-arrow-up"></i></button></div>
-						<div>
-							<button class="button_arrow" style="font-size:24px" id="pre_left" type="button"><i class="fa fa-arrow-left"></i></button>
-							<button class="button_arrow" style="font-size:24px" id="pre_down" type="button"><i class="fa fa-arrow-down"></i></button>
-							<button class="button_arrow" style="font-size:24px" id="pre_right" type="button"><i class="fa fa-arrow-right"></i></button>
-						</div>
-                        <br>
-						<div id="change_key_div" style="display: none"><input id="change_key_input" placeholder="Click here, then press a key." type="text"></div>
-						<h4>Choose the colors of balls: </h4>
-                        <h4>*The colors below are recommended for a fun gaming experience :)</h4>
-                        <br>
-                        <h4>5 Points Ball COLOR: <input type="color" name="point_color_5" id="point_color_5" value="#ffffff"></h4>
-						<h4>15 Points Ball COLOR: <input type="color" name="point_color_15" id="point_color_15" value="#1900ff"></h4>
-						<h4>25 Points Ball COLOR: <input type="color" name="point_color_25" id="point_color_25" value="#e52929"></h4>
-                        <br>
-                        <div class="buttonForm" id="buttonSet">
-                            <input class="button_sub" id="random" type="button" value="Random">
-                            <input class="button_sub" id="startGame"  type="submit" value="Start!" ">
-                        </div>
-
-
-
-
-					</form>
+		<div id="login" style="display: none">
+			<form class="forms" id="login_form" autocomplete="off">
+				<h2 class="titleForm"><strong>Login</strong></h2><br>
+				<div class="fields" id="log">
+					<input name="login_user_name" id="login_user_name" placeholder="User Name" type="text"><br><br>
+					<input name="login_password" id="login_password" placeholder="Password" type="password">
 				</div>
+				<br><br>
+				<div class="buttonForm" id="buttonLog">
+					<input class="button_sub" id="submit_login" type="submit" value="Sign In">
+				</div>
+			</form>
+		</div>
 
-				<div id="gameBoard" style="display: none" >
+		<div id="game" style="display: none">
+			<div id="load_gif" style="display: none">
+				<img src="images/load.gif" id="loading_gif">
+			</div>
 
-					<div id="player">
-						<label for="lblWelcome">WELCOME:</label>
-						<input id="lblWelcome" type="text" />
+			<div id="settings" style="display: none">
+				<form class="forms" id="settings_form" autocomplete="off">
+					<h2 class="titleForm"><strong>Game Settings</strong></h2><br>
+					<div class="fields" id="set">
+						<label for="num_balls">Number of balls (50-90)</label><br>
+						<input name="num_balls" id="num_balls" placeholder="Number of balls" type="text"><br><br>
+
+						<label for="num_ghost">Number of ghosts (1-4)</label><br>
+						<input name="num_ghost" id="num_ghost" placeholder="Number of ghosts" type="text"><br><br>
+
+						<label for="time">Game time in seconds (Biger then 60)</label><br>
+						<input name="time" id="time" placeholder="Time in seconds" type="text"><br><br>
 					</div>
+
+					<h4>Move the Pac-Man using the arrow keys on the keyboard</h4>
+					<h4>If you want to change the keys- press the buttons below</h4>
+					<div><button class="button_arrow" style="font-size:24px" id="pre_up" type="button"><i class="fa fa-arrow-up"></i></button></div>
 					<div>
-						<div >
-							<label  id="score" for="lblScore">SCORE:</label>
-							<input id="lblScore" type="text" />
-
-							<label  id="timer" for="lblTime">TIME:</label>
-							<input id="lblTime" type="text" />
-
-							<label id="life">LIFE: </label>
-							<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas>
-							<img id="heart" src="images/heart.png" style="display: none">
-						</div>
+						<button class="button_arrow" style="font-size:24px" id="pre_left" type="button"><i class="fa fa-arrow-left"></i></button>
+						<button class="button_arrow" style="font-size:24px" id="pre_down" type="button"><i class="fa fa-arrow-down"></i></button>
+						<button class="button_arrow" style="font-size:24px" id="pre_right" type="button"><i class="fa fa-arrow-right"></i></button>
 					</div>
-					<div id="gameCanvas">
-						<canvas id="canvas" height="600" width="600"></canvas>
-						<img class="ghost" id="ghost1" src="images/PINKY.gif" style="display: none">
-						<img class="ghost" id="ghost2" src="images/BLINKY.gif" style="display: none">
-						<img class="ghost" id="ghost3" src="images/INKY.gif" style="display: none">
-
+					<br>
+					<div id="change_key_div" style="display: none"><input id="change_key_input" placeholder="Click here, then press a key." type="text"></div>
+					<h4>Choose the colors of balls: </h4>
+					<h4>*The colors below are recommended for a fun gaming experience :)</h4>
+					<br>
+					<h4>5 Points Ball COLOR: <input type="color" name="point_color_5" id="point_color_5" value="#ffffff"></h4>
+					<h4>15 Points Ball COLOR: <input type="color" name="point_color_15" id="point_color_15" value="#1900ff"></h4>
+					<h4>25 Points Ball COLOR: <input type="color" name="point_color_25" id="point_color_25" value="#e52929"></h4>
+					<br>
+					<div class="buttonForm" id="buttonSet">
+						<input class="button_sub" id="random" type="button" value="Random">
+						<input class="button_sub" id="startGame"  type="submit" value="Start!" ">
 					</div>
+				</form>
+			</div>
+
+			<div id="gameBoard" style="display: none" >
+
+				<div id="player">
+					<label for="lblWelcome">WELCOME:</label>
+					<input id="lblWelcome" type="text" />
+				</div>
+				<div>
+					<div >
+						<label  id="score" for="lblScore">SCORE:</label>
+						<input id="lblScore" type="text" />
+
+						<label  id="timer" for="lblTime">TIME:</label>
+						<input id="lblTime" type="text" />
+
+						<label id="life">LIFE: </label>
+						<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas>
+						<img id="heart" src="images/heart.png" style="display: none">
+					</div>
+				</div>
+				<div id="gameCanvas">
+					<canvas id="canvas" height="600" width="600"></canvas>
+					<img class="ghost" id="ghost1" src="images/PINKY.gif" style="display: none">
+					<img class="ghost" id="ghost2" src="images/BLINKY.gif" style="display: none">
+					<img class="ghost" id="ghost3" src="images/INKY.gif" style="display: none">
+
+				</div>
 
 			</div>
 
+		</div>
+	</content>
+</main>
 
-		</content>
-	</main>
-
-	<dialog id="about" class="dialog">
-		<div class="aboutContent">
+<dialog id="about" class="dialog">
+	<div class="aboutContent">
 		<h3>About</h3>
 		<br>
 		<P>
@@ -196,26 +192,24 @@
 		</P>
 		<br>
 		<button id="closeAbout" class="close" >Close</button>
-		</div>
-	</dialog>
+	</div>
+</dialog>
 
-	<dialog id="contact" class="dialog">
-		<div class="contactContent">
+<dialog id="contact" class="dialog">
+	<div class="contactContent">
 		<img id="contactImage" src="images/contact.png">
 		<h3>Contact With Us!</h3>
-		<br>
 		<P>
 			Yasmin: yasminav@post.bgu.ac.il<br>
 			Meytal: meshumey@post.bgu.ac.il
 		</P>
-		<br>
 		<button id="closeContact" class="close" >Close</button>
-		</div>
-	</dialog>
-
-	<div class="downPage">
-		Product By Meytal Yaniv & Yasmin Avraham    © 2020
 	</div>
+</dialog>
+
+<downPage>
+	Product By Meytal Yaniv & Yasmin Avraham    © 2020
+</downPage>
 
 
 <!--		<div id="score">
@@ -230,10 +224,11 @@
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>-->
 
-	</body>
+</body>
 
-	<script src="js/dialog.js"></script>
-	<script src="js/register.js"></script>
-	<script src="js/welcome.js"></script>
-	<script src="js/settings.js"></script>
+<script src="js/dialog.js"></script>
+<script src="js/register.js"></script>
+<script src="js/welcome.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
 </html>
