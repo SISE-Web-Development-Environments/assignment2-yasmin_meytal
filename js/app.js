@@ -26,15 +26,10 @@ function Start() {
 	start_time = new Date();
 	updateHearts();
 	setUsername();
-	for (var i = 0; i < 10; i++) {
-		board[i] = new Array();
-		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-		for (var j = 0; j < 10; j++) {
-			if (
-				i==0 || j==0 || i==10-1 || j==10-1
-			) {
-				board[i][j] = 4;
-			} else {
+	initBoard();
+	for (var i = 0; i < 20; i++) {
+		for (var j = 0; j < 20; j++) {
+			if (board[i][j] != 4 && board[i][j] != 5) {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food_remain) / cnt) {
 					food_remain--;
@@ -44,13 +39,36 @@ function Start() {
 					shape.j = j;
 					pacman_remain--;
 					board[i][j] = 2;
-				} else {
-					board[i][j] = 0;
 				}
-				cnt--;
 			}
 		}
 	}
+
+	// for (var i = 0; i < 10; i++) {
+	// 	board[i] = new Array();
+	// 	//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
+	// 	for (var j = 0; j < 10; j++) {
+	// 		if (
+	// 			i==0 || j==0 || i==10-1 || j==10-1
+	// 		) {
+	// 			board[i][j] = 4;
+	// 		} else {
+	// 			var randomNum = Math.random();
+	// 			if (randomNum <= (1.0 * food_remain) / cnt) {
+	// 				food_remain--;
+	// 				board[i][j] = 1;
+	// 			} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
+	// 				shape.i = i;
+	// 				shape.j = j;
+	// 				pacman_remain--;
+	// 				board[i][j] = 2;
+	// 			} else {
+	// 				board[i][j] = 0;
+	// 			}
+	// 			cnt--;
+	// 		}
+	// 	}
+	// }
 	while (food_remain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1;
@@ -107,21 +125,21 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < 20; i++) {
+		for (var j = 0; j < 20; j++) {
 			var center = new Object();
-			center.x = i * 60 + 30;
-			center.y = j * 60 + 30;
+			center.x = i * 30 + 15;
+			center.y = j * 30 + 15;
 			if (board[i][j] == 2) {
 				DrawPacman(context,center.x,center.y);
 			} else if (board[i][j] == 1) {
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color
 				context.fill();
 			} else if (board[i][j] == 4) {
 				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 60, 60);
+				context.rect(center.x - 15, center.y - 15, 30, 30);
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
@@ -138,7 +156,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) {//right
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < 19 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 		}
 	}
@@ -148,7 +166,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {//down
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+		if (shape.i < 19 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 		}
 	}
@@ -174,52 +192,52 @@ function UpdatePosition() {
 function DrawPacman(ctx, x, y) {
 	ctx.beginPath();
 	if (pac_movement==1) {
-		ctx.arc(x, y, 25, 1.65 * Math.PI, 1.35 * Math.PI);
+		ctx.arc(x, y, 14, 1.65 * Math.PI, 1.35 * Math.PI);
 		ctx.lineTo(x, y);
 		ctx.fillStyle = pac_color; //color
 		ctx.fill();
 		ctx.beginPath();
-		ctx.arc(x - 15, y - 5, 5, 0, 2 * Math.PI);
+		ctx.arc(x - 13, y - 0, 2, 0, 2 * Math.PI);
 		ctx.fillStyle = "black"; //color
 		ctx.fill();
 	}
 	else if (pac_movement==2) {
-		ctx.arc(x, y, 25, 0.65 * Math.PI, 0.35 * Math.PI);
+		ctx.arc(x, y, 14, 0.65 * Math.PI, 0.35 * Math.PI);
 		ctx.lineTo(x, y);
 		ctx.fillStyle = pac_color; //color
 		ctx.fill();
 		ctx.beginPath();
-		ctx.arc(x + 15, y - 5, 5, 0, 2 * Math.PI);
+		ctx.arc(x + 13, y - 0, 2, 0, 2 * Math.PI);
 		ctx.fillStyle = "black"; //color
 		ctx.fill();
 	}
 	else if (pac_movement==4) {
-		ctx.arc(x, y, 25, 0.15 * Math.PI, 1.85 * Math.PI);
+		ctx.arc(x, y, 14, 0.15 * Math.PI, 1.85 * Math.PI);
 		ctx.lineTo(x, y);
 		ctx.fillStyle = pac_color; //color
 		ctx.fill();
 		ctx.beginPath();
-		ctx.arc(x + 5, y - 15, 5, 0, 2 * Math.PI);
+		ctx.arc(x + 5, y - 10, 2, 0, 2 * Math.PI);
 		ctx.fillStyle = "black"; //color
 		ctx.fill();
 	}
 	else if (pac_movement==3) {
-		ctx.arc(x, y, 25, 1.15 * Math.PI, 0.85 * Math.PI);
+		ctx.arc(x, y, 14, 1.15 * Math.PI, 0.85 * Math.PI);
 		ctx.lineTo(x, y);
 		ctx.fillStyle = pac_color; //color
 		ctx.fill();
 		ctx.beginPath();
-		ctx.arc(x - 5, y - 15, 5, 0, 2 * Math.PI);
+		ctx.arc(x - 5, y - 10, 2, 0, 2 * Math.PI);
 		ctx.fillStyle = "black"; //color
 		ctx.fill();
 	}
 	else{
-		ctx.arc(x, y, 25, 0.15 * Math.PI, 1.85 * Math.PI);
+		ctx.arc(x, y, 14, 0.15 * Math.PI, 1.85 * Math.PI);
 		ctx.lineTo(x, y);
 		ctx.fillStyle = pac_color; //color
 		ctx.fill();
 		ctx.beginPath();
-		ctx.arc(x + 5, y - 15, 5, 0, 2 * Math.PI);
+		ctx.arc(x + 5, y - 10, 2, 0, 2 * Math.PI);
 		ctx.fillStyle = "black"; //color
 		ctx.fill();
 	}
@@ -264,4 +282,29 @@ function updateHearts() {
 }
 function setUsername() {
 	lblWelcome.value="TEST";//put the username/?????????????????????????????????????/
+}
+
+
+function initBoard() {
+	board[0]= [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+	board[1]= [4,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,4];
+	board[2]= [4,0,0,4,0,0,0,0,0,0,4,0,0,0,0,4,0,0,0,4];
+	board[3]= [4,0,0,4,0,0,0,0,0,0,4,0,0,0,0,4,0,0,0,4];
+	board[4]= [4,0,0,4,4,4,0,0,0,0,0,0,0,0,4,4,4,0,0,4];
+	board[5]= [4,0,0,4,4,4,0,0,0,0,0,0,0,0,0,4,0,0,0,4];
+	board[6]= [4,0,0,4,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,4];
+	board[7]= [4,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4];
+	board[8]= [4,0,0,0,0,0,0,4,4,4,4,4,4,0,0,0,0,0,0,4];
+	board[9]= [4,0,0,0,0,0,0,4,4,4,4,4,4,0,0,0,0,0,0,4];
+	board[10]=[4,0,0,0,0,0,0,4,4,4,4,4,4,0,0,0,0,0,0,4];
+	board[11]= [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4];
+	board[12]= [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4];
+	board[13]= [4,0,0,4,4,0,0,0,0,0,0,0,0,0,4,4,4,0,0,4];
+	board[14]= [4,0,0,4,4,0,0,0,0,0,0,0,0,0,4,0,4,0,0,4];
+	board[15]= [4,0,0,4,0,0,0,0,0,4,4,0,0,0,4,0,4,0,0,4];
+	board[16]= [4,0,0,4,0,0,0,0,0,4,4,0,0,0,4,0,4,0,0,4];
+	board[17]= [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,4];
+	board[18]= [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4];
+	board[19]= [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+
 }
