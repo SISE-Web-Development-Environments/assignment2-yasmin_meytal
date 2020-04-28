@@ -10,13 +10,13 @@ var pac_movement=6;
 var life=5;
 
 
+
 $(document).ready(function() {
 	context = canvas.getContext("2d");
 	Start();
 });
 
 function Start() {
-
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -123,8 +123,11 @@ function GetKeyPressed() {
 
 function Draw() {
 	canvas.width = canvas.width; //clean board
+
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
+	lblWelcome.value = cur_user;
+
 	for (var i = 0; i < 20; i++) {
 		for (var j = 0; j < 20; j++) {
 			var center = new Object();
@@ -252,29 +255,29 @@ function updateHearts() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	if(life==1){
-		ctx.drawImage(img, 0, 30, 60, 140);
+		ctx.drawImage(img, 0, 20, 50, 140);
 	}
 	else if(life==2){
-		ctx.drawImage(img, 0, 30, 60, 140);
-		ctx.drawImage(img, 70, 30, 60, 140);
+		ctx.drawImage(img, 0, 20, 50, 140);
+		ctx.drawImage(img, 60, 20, 50, 140);
 	}
 	else if(life==3){
-		ctx.drawImage(img, 0, 30, 60, 140);
-		ctx.drawImage(img, 70, 30, 60, 140);
-		ctx.drawImage(img, 140, 30, 60, 140);
+		ctx.drawImage(img, 0, 20, 50, 140);
+		ctx.drawImage(img, 60, 20, 50, 140);
+		ctx.drawImage(img, 120, 20, 50, 140);
 	}
 	else if(life==4){
-		ctx.drawImage(img, 0, 30, 60, 140);
-		ctx.drawImage(img, 70, 30, 60, 140);
-		ctx.drawImage(img, 140, 30, 60, 140);
-		ctx.drawImage(img, 210, 30, 60, 140);
+		ctx.drawImage(img, 0, 20, 50, 140);
+		ctx.drawImage(img, 60, 20, 50, 140);
+		ctx.drawImage(img, 120, 20, 50, 140);
+		ctx.drawImage(img, 180, 20, 50, 140);
 	}
 	else if(life==5){
-		ctx.drawImage(img, 0, 20, 60, 140);
-		ctx.drawImage(img, 70, 20, 60, 140);
-		ctx.drawImage(img, 140, 20, 60, 140);
-		ctx.drawImage(img, 210, 20, 60, 140);
-		ctx.drawImage(img, 280, 20, 60, 140);
+		ctx.drawImage(img, 0, 20, 50, 140);
+		ctx.drawImage(img, 60, 20, 50, 140);
+		ctx.drawImage(img, 120, 20, 50, 140);
+		ctx.drawImage(img, 180, 20, 50, 140);
+		ctx.drawImage(img, 240, 20, 50, 140);
 	}
 
 

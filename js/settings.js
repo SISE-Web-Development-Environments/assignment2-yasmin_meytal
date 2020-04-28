@@ -69,10 +69,11 @@ $(function() {
             }
         },
         submitHandler: function(form) {
+            setTimeout(startPlay(),3000);
             set_values();
-            startPlay();
+
             Start()
-            //initBoard();
+            ///////////initBoard();
 
             reset();
         }
@@ -127,6 +128,7 @@ $("#random").click(function() {
 });
 function startPlay(){
     $('#settings').hide();
+    $('#game').show();
     $('#gameBoard').show();
 
 }

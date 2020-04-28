@@ -135,7 +135,7 @@
 						<button class="button_arrow" style="font-size:24px" id="pre_right" type="button"><i class="fa fa-arrow-right"></i></button>
 					</div>
 					<br>
-					<div id="change_key_div" style="display: none"><input id="change_key_input" placeholder="Click here, then press a key." type="text"></div>
+					<div id="change_key_div" style="display: none"><input id="change_key_input" placeholder="Click here and press a key." type="text"></div>
 					<h4>Choose the colors of balls: </h4>
 					<h4>*The colors below are recommended for a fun gaming experience :)</h4>
 					<br>
@@ -145,27 +145,28 @@
 					<br>
 					<div class="buttonForm" id="buttonSet">
 						<input class="button_sub" id="random" type="button" value="Random">
-						<input class="button_sub" id="startGame"  type="submit" value="Start!" ">
+						<input class="button_sub" id="startGame"  type="submit" value="Start!">
 					</div>
 				</form>
 			</div>
 
 			<div id="gameBoard" style="display: none" >
 
-					<div >
-						<label for="lblWelcome">WELCOME:</label>
-						<input id="lblWelcome" type="text" />
+				<div >
+					<label for="lblWelcome">WELCOME:</label>
+					<input id="lblWelcome" type="text" />
 
-						<label  id="score" for="lblScore">SCORE:</label>
-						<input id="lblScore" type="text" />
+					<label  id="score" for="lblScore">SCORE:</label>
+					<input id="lblScore" type="text" />
 
-						<label  id="timer" for="lblTime">TIME:</label>
-						<input id="lblTime" type="text" />
-
-						<label id="life">LIFE: </label>
-						<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas>
+					<label  id="timer" for="lblTime">TIME:</label>
+					<input id="lblTime" type="text" />
+					<br>
+					<label id="life">LIFE: </label>
+					<canvas id="lblHeart" style="width: 300px; height: 30px">
 						<img id="heart" src="images/heart.png" style="display: none">
-					</div>
+					</canvas>
+				</div>
 
 				<div id="gameCanvas">
 					<canvas id="canvas" height="600" width="600"></canvas>

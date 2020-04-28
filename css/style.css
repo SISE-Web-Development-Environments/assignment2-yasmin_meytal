@@ -107,3 +107,7 @@ downPage {
 .error {
     color: red;
 }
+
+#gameBoard{
+    color: white;
+}

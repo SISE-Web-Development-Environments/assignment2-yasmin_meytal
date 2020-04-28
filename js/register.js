@@ -135,11 +135,11 @@ $(function() {
             if (confirm_password()){
 ///////////////////////enter game///////////////////////////////
                 cur_user = document.getElementById('login_user_name').value;
+                document.getElementById('lblWelcome').value = cur_user;
 
                 $('#login').hide();
                 $('#game').show();
                 $('#load_gif').show();
-               // document.getElementById('Player').value = cur_user;
                 setTimeout(game_settings,3000);
             }
             else{
