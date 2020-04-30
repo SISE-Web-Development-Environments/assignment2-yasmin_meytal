@@ -88,18 +88,19 @@ function set_values(){
     color_p15 = document.getElementById('point_color_15').value;
     color_p25 = document.getElementById('point_color_25').value;
     saveSettings(color_p5,color_p15,color_p25,balls,ghosts,time);
+    setKeys(up,down,right,left);
 }
 
-function initBoard() {
-    var canvas = document.getElementById('canvas-board');
-    canvas.setAttribute('width', '550');
-    canvas.setAttribute('height', '550');
-    canvas_width = 550;
-    canvas_height = 550;
-    if (canvas.getContext) {
-        BOARD_CANVAS_CONTEXT = canvas.getContext('2d');
-    }
-}
+// function initBoard() {
+//     var canvas = document.getElementById('canvas-board');
+//     canvas.setAttribute('width', '550');
+//     canvas.setAttribute('height', '550');
+//     canvas_width = 550;
+//     canvas_height = 550;
+//     if (canvas.getContext) {
+//         BOARD_CANVAS_CONTEXT = canvas.getContext('2d');
+//     }
+// }
 
 function reset() {
     document.getElementById('num_balls').value = '';

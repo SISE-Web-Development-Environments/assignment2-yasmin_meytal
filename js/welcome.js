@@ -35,4 +35,5 @@ function hidefunc(){
     $('#game').hide();
     $('#settings').hide();
     $('#gameBoard').hide();
+    $('#gameOver').hide();
 };
