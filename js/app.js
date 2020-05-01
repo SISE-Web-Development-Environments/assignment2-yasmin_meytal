@@ -128,7 +128,7 @@ function UpdatePosition() {
 		clearInterval(interval);
 		clearInterval(interval1);
 		clearInterval(checkInterval);
-		window.alert("You win!!!");
+		window.alert("Winner!!!");
 		Start();
 	} else {
 		Draw();
@@ -387,6 +387,10 @@ function defineBalls() {
 
 
 function gameOver() {
+	life=1;
+	window.clearInterval(interval);
+	window.clearInterval(interval1);
+	window.clearInterval(checkInterval);
 	$('#gameBoard').hide();
 	$('#gameOver').show();
 }
@@ -591,8 +595,26 @@ function checkCondition() {
 	if(checkPacmanAndGhost()){
 		restart();
 	}
-	else if((time_elapsed<=0 && time_elapsed>-0.4) || life==0){
+	else if((time_elapsed<=0 && time_elapsed>-0.4) && score<100){
 		window.clearInterval(interval);
+		window.clearInterval(interval1);
+		window.clearInterval(checkInterval);
+		alert("You are better than "+score +" points!");
+		gameOver();
+	}
+	else if(life==0){
+		life=1;
+		window.clearInterval(interval);
+		window.clearInterval(interval1);
+		window.clearInterval(checkInterval);
+		// alert("Loser!");
+		gameOver();
+	}
+	else if((time_elapsed<=0 && time_elapsed>-0.4)){
+		window.clearInterval(interval);
+		window.clearInterval(interval1);
+		window.clearInterval(checkInterval);
+		alert("Time is up!");
 		gameOver();
 	}
  	// else if (numOfEatenFood==balls || score>600) {
