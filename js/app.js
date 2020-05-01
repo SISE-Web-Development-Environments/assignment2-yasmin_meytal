@@ -76,6 +76,7 @@ function Start() {
 	checkInterval=setInterval(checkCondition,50);
 
 }
+
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
 	var x = GetKeyPressed();
@@ -135,7 +136,6 @@ function UpdatePosition() {
 
 
 }
-
 
 function pacmanStartPosition(){
 	let c=findRandomEmptyCell(board);
@@ -227,8 +227,6 @@ function Draw() {
 	}
 }
 
-
-
 function DrawPacman(ctx, x, y) {
 	ctx.beginPath();
 	if (pac_movement==1) {
@@ -292,33 +290,30 @@ function updateHearts() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 	if(life==1){
-		ctx.drawImage(img, 0, 20, 50, 140);
+		ctx.drawImage(img, 0, 20, 40, 112);
 	}
 	else if(life==2){
-		ctx.drawImage(img, 0, 20, 50, 140);
-		ctx.drawImage(img, 60, 20, 50, 140);
+		ctx.drawImage(img, 0, 20, 40, 112);
+		ctx.drawImage(img, 60, 20, 40, 112);
 	}
 	else if(life==3){
-		ctx.drawImage(img, 0, 20, 50, 140);
-		ctx.drawImage(img, 60, 20, 50, 140);
-		ctx.drawImage(img, 120, 20, 50, 140);
+		ctx.drawImage(img, 0, 20, 40, 112);
+		ctx.drawImage(img, 60, 20, 40, 112);
+		ctx.drawImage(img, 120, 20, 40, 112);
 	}
 	else if(life==4){
-		ctx.drawImage(img, 0, 20, 50, 140);
-		ctx.drawImage(img, 60, 20, 50, 140);
-		ctx.drawImage(img, 120, 20, 50, 140);
-		ctx.drawImage(img, 180, 20, 50, 140);
+		ctx.drawImage(img, 0, 20, 40, 112);
+		ctx.drawImage(img, 60, 20, 40, 112);
+		ctx.drawImage(img, 120, 20, 40, 112);
+		ctx.drawImage(img, 180, 20, 40, 112);
 	}
 	else if(life==5){
-		ctx.drawImage(img, 0, 20, 50, 140);
-		ctx.drawImage(img, 60, 20, 50, 140);
-		ctx.drawImage(img, 120, 20, 50, 140);
-		ctx.drawImage(img, 180, 20, 50, 140);
-		ctx.drawImage(img, 240, 20, 50, 140);
+		ctx.drawImage(img, 0, 20, 40, 112);
+		ctx.drawImage(img, 60, 20, 40, 112);
+		ctx.drawImage(img, 120, 20, 40, 112);
+		ctx.drawImage(img, 180, 20, 40, 112);
+		ctx.drawImage(img, 240, 20, 40, 112);
 	}
-
-
-
 }
 
 function initBoard() {
@@ -623,4 +618,44 @@ $('#newGame').click(function () {
 	window.alert("Start new Game!!!");
 	Start();
 
+});
+
+$("#newSetting").click(function () {
+	//$('#gameBoard').hide();
+	clearInterval(interval);
+	clearInterval(interval1);
+	clearInterval(checkInterval);
+	hidefunc();
+
+	$("#game").show();
+	$("#settings").show();
+	$("#settings_form").show();
+});
+
+$("#new_Game").click(function () {
+	$('#gameBoard').hide();
+	hidefunc();
+	$("#gameOver").hide();
+	$("#game").show();
+	$("#gameBoard").show();
+
+	clearInterval(interval);
+	clearInterval(interval1);
+	clearInterval(checkInterval);
+	window.alert("Start new Game!!!");
+	Start();
+});
+
+$("#set_settings").click(function () {
+	//$('#gameBoard').hide();
+	clearInterval(interval);
+	clearInterval(interval1);
+	clearInterval(checkInterval);
+	hidefunc();
+	$('#gameBoard').hide();
+
+
+	$("#game").show();
+	$("#settings").show();
+	$("#settings_form").show();
 });

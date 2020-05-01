@@ -162,9 +162,11 @@
 						<label  id="timer" for="lblTime">TIME:</label>
 						<input id="lblTime" type="text" />
 
-						<label id="life">LIFE: </label>
+<!--						<label id="life">LIFE: </label>-->
 						<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas>
 						<img id="heart" src="images/heart.png" style="display: none">
+						<input class="button_game" id="new_Game" type="button" value="New Game">
+						<input class="button_game" id="set_settings" type="button" value="Settings">
 					</div>
 
 				<div id="gameCanvas">
@@ -184,7 +186,8 @@
 
 		<div id="gameOver" style="display: none">
 			<img  id="imgOver" src="images/gameover.png"><br>
-			<input class="button_sub" id="newGame" type="button" value="Start New Game">
+			<input class="button_over" id="newGame" type="button" value="Start New Game">
+			<input class="button_over" id="newSetting" type="button" value="Set Settings">
 			<!--				<input class="button_sub" id="goWelcome"  type="submit" value="Welcome">-->
 
 		</div>

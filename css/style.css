@@ -111,7 +111,17 @@ footer{
 #gameBoard{
     color: white;
 }
-main #gameOver #newGame {
+main #gameOver .button_over {
+    font-family: "Luckiest Guy";
+    font-style: normal;
+    font-variant: normal;
+    background-color: #ffcc00;
+    color: white;
+    border: 0px;
+    font-size: 20px;
+}
+
+main #game #gameBoard .button_game{
     font-family: "Luckiest Guy";
     font-style: normal;
     font-variant: normal;
