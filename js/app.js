@@ -74,10 +74,10 @@ function Start() {
 		false
 	);
 
-	interval = setInterval(UpdatePosition, 300);
+	interval = setInterval(UpdatePosition, 200);
 	interval1=setInterval(updateGhostPosition,600);
 	checkInterval=setInterval(checkCondition,50);
-	interval_gift = setInterval(UpdateGift, 600);
+	interval_gift = setInterval(UpdateGift, 700);
 	stop_all();
 	play_game_music();
 }
@@ -116,6 +116,9 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 25) {
 		score+=25;
 		numOfEatenFood++;
+	}
+	if (board[shape.i][shape.j] == 50) {
+		score+=50;
 	}
 	board[shape.i][shape.j] = 2;
 
@@ -231,8 +234,8 @@ function Draw() {
 			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34){
 				drawGhost(9);
 			}
-			if(board[i][j] == 50){
-				drawGift(50);
+			else if(board[i][j] == 50){
+				drawGift();
 			}
 		}
 	}
@@ -552,7 +555,7 @@ function optimalMove(x,y,lastX,lastY){
 			move_j=y+1;
 		}
 	}
-	if(y-1>0 && board[x][y-1]!= 4 && (x!=lastX || y-1!=lastY ) && !checkGhost(x,y+1)){
+	if(y-1>0 && board[x][y-1]!= 4 && (x!=lastX || y-1!=lastY ) && !checkGhost(x,y-1)){
 		if(distance(x,y-1,shape.i,shape.j)<minDist){
 			minDist=distance(x,y-1,shape.i,shape.j);
 			move_i=x;
@@ -610,13 +613,14 @@ function checkCondition() {
 		//play_hit();
 		restart();
 	}
-	if(shape.i==movingGift.i && shape.j==movingGift.j){
+/*	if(shape.i==movingGift.i && shape.j==movingGift.j){
 		score+=50;
-	}
+	}*/
 	else if((time_elapsed<=0 && time_elapsed>-0.4) && score<100){
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
+		window.clearInterval(interval_gift);
 		alert("You are better than "+score +" points!");
 		stop_game_music();
 		gameOver();
@@ -693,6 +697,8 @@ $("#new_Game").click(function () {
 	clearInterval(interval);
 	clearInterval(interval1);
 	clearInterval(checkInterval);
+	clearInterval(interval_gift);
+
 	window.alert("Start new Game!!!");
 	Start();
 });
@@ -723,11 +729,9 @@ function initGift() {
 
 }
 
-function drawGift(x) {
-	if(x==50) {
-		var gift = document.getElementById("gift");
-		context.drawImage(gift, movingGift.i * 30, movingGift.j * 30 - 2, 35, 35);
-	}
+function drawGift() {
+	var gift = document.getElementById("gift");
+	context.drawImage(gift, movingGift.i * 30, movingGift.j * 30 - 2, 35, 35);
 }
 
 function UpdateGift() {
@@ -747,25 +751,25 @@ function randomMove(x,y,lastX,lastY){
 	let dir = Math.random();
 
 	//down
-	if(y+1<19 && board[x][y+1]!=4 && (x!=lastX || y+1!=lastY ) && dir < 0.25 ){
+	if(y+1<19 && board[x][y+1]!=4 && (x!=lastX || y+1!=lastY ) && !checkGhost(x,y+1)&& dir < 0.25 ){
 		move_i=x;
 		move_j=y+1;
 	}
 
 	//up
-	if(y-1>0 && board[x][y-1]!= 4 && (x!=lastX || y-1!=lastY ) && dir < 0.5){
+	else if(y-1>0 && board[x][y-1]!= 4 && (x!=lastX || y-1!=lastY ) && !checkGhost(x,y-1)&& dir < 0.5){
 		move_i=x;
 		move_j=y-1;
 	}
 
 	//right
-	if(x+1<19 && board[x+1][y]!=4 && (x+1!=lastX || y!=lastY && dir < 0.75 )){
+	else if(x+1<19 && board[x+1][y]!=4 && (x+1!=lastX || y!=lastY && !checkGhost(x+1,y) &&dir < 0.75 )){
 		move_i=x+1;
 		move_j=y;
 	}
 
 	//left
-	if(x-1>0 && board[x-1][y]!=4 && (x-1!=lastX || y!=lastY ) && dir < 1) {
+	else if(x-1>0 && board[x-1][y]!=4 && (x-1!=lastX || y!=lastY ) && !checkGhost(x-1,y)&& dir < 1) {
 			move_i=x-1;
 			move_j=y;
 	}
