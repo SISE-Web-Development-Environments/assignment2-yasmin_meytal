@@ -24,7 +24,9 @@ var g3_lastMove=null;
 var ghost4=null;
 var g4_lastMove=null;
 
-
+var movingGift = new Object();
+var movingGift_lastMove=new Object();
+var interval_gift= null;
 
 //setting from user
 var color_p5 = "#ffffff";
@@ -52,6 +54,7 @@ function Start() {
 	numOfEatenFood=0;
 	initBoard();
 	initGhost();//the ghost need to start from the corner.
+	initGift();
 	pacmanStartPosition();
 	defineBalls();
 	keysDown = {};
@@ -74,7 +77,9 @@ function Start() {
 	interval = setInterval(UpdatePosition, 300);
 	interval1=setInterval(updateGhostPosition,600);
 	checkInterval=setInterval(checkCondition,50);
-
+	interval_gift = setInterval(UpdateGift, 600);
+	stop_all();
+	play_game_music();
 }
 
 function UpdatePosition() {
@@ -128,6 +133,9 @@ function UpdatePosition() {
 		clearInterval(interval);
 		clearInterval(interval1);
 		clearInterval(checkInterval);
+		clearInterval(interval_gift);
+		stop_all();
+		play_win();
 		window.alert("Winner!!!");
 		Start();
 	} else {
@@ -214,7 +222,7 @@ function Draw() {
 			else if(board[i][j]==6 || board[i][j]==11|| board[i][j]==21 || board[i][j]==31){
 				drawGhost(6);
 			}
-			else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==31){
+			else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==32){
 				drawGhost(7);
 			}
 			else if(board[i][j]==8 || board[i][j]==13|| board[i][j]==23 || board[i][j]==33){
@@ -222,6 +230,9 @@ function Draw() {
 			}
 			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34){
 				drawGhost(9);
+			}
+			if(board[i][j] == 50){
+				drawGift(50);
 			}
 		}
 	}
@@ -387,10 +398,12 @@ function defineBalls() {
 
 
 function gameOver() {
+	stop_game_music();
 	life=1;
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(checkInterval);
+	window.clearInterval(interval_gift);
 	$('#gameBoard').hide();
 	$('#gameOver').show();
 }
@@ -569,13 +582,14 @@ function restart() {
 	pacmanStartPosition();
 	score-=10;
 	life-=1;
+
 }
 
 function checkGhost(i,j){
 	if(board[i][j]==6 || board[i][j]==11|| board[i][j]==21 || board[i][j]==31){
 		return true;
 	}
-	else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==31){
+	else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==32){
 		return true;
 	}
 	else if(board[i][j]==8 || board[i][j]==13|| board[i][j]==23 || board[i][j]==33){
@@ -593,13 +607,18 @@ function checkCondition() {
 	time_elapsed = time-currTime/1000;
 
 	if(checkPacmanAndGhost()){
+		//play_hit();
 		restart();
+	}
+	if(shape.i==movingGift.i && shape.j==movingGift.j){
+		score+=50;
 	}
 	else if((time_elapsed<=0 && time_elapsed>-0.4) && score<100){
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		alert("You are better than "+score +" points!");
+		stop_game_music();
 		gameOver();
 	}
 	else if(life==0){
@@ -607,15 +626,20 @@ function checkCondition() {
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
+		window.clearInterval(interval_gift);
 		// alert("Loser!");
 		gameOver();
+		stop_game_music();
 	}
 	else if((time_elapsed<=0 && time_elapsed>-0.4)){
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
+		window.clearInterval(interval_gift);
+
 		alert("Time is up!");
 		gameOver();
+		stop_game_music();
 	}
  	// else if (numOfEatenFood==balls || score>600) {
 		//  	window.clearInterval(interval);
@@ -629,6 +653,7 @@ function checkCondition() {
 }
 
 $('#newGame').click(function () {
+	stop_all();
 	hidefunc();
 	$("#gameOver").hide();
 	$("#game").show();
@@ -637,6 +662,8 @@ $('#newGame').click(function () {
 	clearInterval(interval);
 	clearInterval(interval1);
 	clearInterval(checkInterval);
+	clearInterval(interval_gift);
+
 	window.alert("Start new Game!!!");
 	Start();
 
@@ -644,9 +671,11 @@ $('#newGame').click(function () {
 
 $("#newSetting").click(function () {
 	//$('#gameBoard').hide();
+	stop_all();
 	clearInterval(interval);
 	clearInterval(interval1);
 	clearInterval(checkInterval);
+	clearInterval(interval_gift);
 	hidefunc();
 
 	$("#game").show();
@@ -670,9 +699,11 @@ $("#new_Game").click(function () {
 
 $("#set_settings").click(function () {
 	//$('#gameBoard').hide();
+	stop_all();
 	clearInterval(interval);
 	clearInterval(interval1);
 	clearInterval(checkInterval);
+	clearInterval(interval_gift);
 	hidefunc();
 	$('#gameBoard').hide();
 
@@ -681,3 +712,63 @@ $("#set_settings").click(function () {
 	$("#settings").show();
 	$("#settings_form").show();
 });
+
+function initGift() {
+	movingGift.i=2;
+	movingGift.j=2;
+	board[2][2]=50;
+	movingGift_lastMove.i=2;
+	movingGift_lastMove.j=2;
+
+
+}
+
+function drawGift(x) {
+	if(x==50) {
+		var gift = document.getElementById("gift");
+		context.drawImage(gift, movingGift.i * 30, movingGift.j * 30 - 2, 35, 35);
+	}
+}
+
+function UpdateGift() {
+
+	let emptyCell = randomMove(movingGift.i,movingGift.j,movingGift_lastMove.i,movingGift_lastMove.j);
+	board[movingGift.i][movingGift.j]=board[movingGift.i][movingGift.j]-50;
+	board[emptyCell[0]][emptyCell[1]]=board[emptyCell[0]][emptyCell[1]]+50;
+	movingGift_lastMove.i=movingGift.i;
+	movingGift_lastMove.j=movingGift.j;
+	movingGift.i=emptyCell[0];
+	movingGift.j=emptyCell[1];
+}
+
+function randomMove(x,y,lastX,lastY){
+	let move_i=0;
+	let move_j=0;
+	let dir = Math.random();
+
+	//down
+	if(y+1<19 && board[x][y+1]!=4 && (x!=lastX || y+1!=lastY ) && dir < 0.25 ){
+		move_i=x;
+		move_j=y+1;
+	}
+
+	//up
+	if(y-1>0 && board[x][y-1]!= 4 && (x!=lastX || y-1!=lastY ) && dir < 0.5){
+		move_i=x;
+		move_j=y-1;
+	}
+
+	//right
+	if(x+1<19 && board[x+1][y]!=4 && (x+1!=lastX || y!=lastY && dir < 0.75 )){
+		move_i=x+1;
+		move_j=y;
+	}
+
+	//left
+	if(x-1>0 && board[x-1][y]!=4 && (x-1!=lastX || y!=lastY ) && dir < 1) {
+			move_i=x-1;
+			move_j=y;
+	}
+
+	return[move_i,move_j];
+}

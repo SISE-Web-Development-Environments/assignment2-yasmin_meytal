@@ -69,11 +69,11 @@ $(function() {
             }
         },
         submitHandler: function(form) {
+            stop_all()
             setTimeout(startPlay(),3000);
             set_values();
-
-            Start()
-            ///////////initBoard();
+            setKeys(up,down,right,left);
+            Start();
 
             reset();
         }
@@ -88,7 +88,7 @@ function set_values(){
     color_p15 = document.getElementById('point_color_15').value;
     color_p25 = document.getElementById('point_color_25').value;
     saveSettings(color_p5,color_p15,color_p25,balls,ghosts,time);
-    setKeys(up,down,right,left);
+
 }
 
 // function initBoard() {
