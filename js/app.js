@@ -117,8 +117,9 @@ function UpdatePosition() {
 		score+=25;
 		numOfEatenFood++;
 	}
-	if (board[shape.i][shape.j] == 50) {
+	if (board[shape.i][shape.j] == 50 || board[shape.i][shape.j] == 55||board[shape.i][shape.j] == 65||board[shape.i][shape.j] == 75) {
 		score+=50;
+		removeGift();
 	}
 	board[shape.i][shape.j] = 2;
 
@@ -234,7 +235,7 @@ function Draw() {
 			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34){
 				drawGhost(9);
 			}
-			else if(board[i][j] == 50){
+			else if(board[i][j] == 50 || board[i][j] == 55||board[i][j] == 65||board[i][j] == 75){
 				drawGift();
 			}
 		}
@@ -532,8 +533,8 @@ function updateGhostPosition(){
 
 function optimalMove(x,y,lastX,lastY){
 	let minDist=100000;
-	let move_i=0;
-	let move_j=0;
+	let move_i=x;
+	let move_j=y;
 	if(x+1<19 && board[x+1][y]!=4 && (x+1!=lastX || y!=lastY && !checkGhost(x+1,y) )){
 		if(distance(x+1,y,shape.i,shape.j)<minDist){
 			minDist=distance(x+1,y,shape.i,shape.j);
@@ -725,8 +726,6 @@ function initGift() {
 	board[2][2]=50;
 	movingGift_lastMove.i=2;
 	movingGift_lastMove.j=2;
-
-
 }
 
 function drawGift() {
@@ -746,8 +745,8 @@ function UpdateGift() {
 }
 
 function randomMove(x,y,lastX,lastY){
-	let move_i=0;
-	let move_j=0;
+	let move_i=movingGift.i;
+	let move_j=movingGift.j;
 	let dir = Math.random();
 
 	//down
@@ -775,4 +774,47 @@ function randomMove(x,y,lastX,lastY){
 	}
 
 	return[move_i,move_j];
+}
+
+// function findOptimalMoveGift(x,y,lastX,lastY) {
+// 	let maxDist=0;
+// 	let move_i=x;
+// 	let move_j=y;
+// 	if(x+1<19 && board[x+1][y]!=4 && (x+1!=lastX || y!=lastY && !checkGhost(x+1,y) )){
+// 		if(distance(x+1,y,shape.i,shape.j)>maxDist){
+// 			maxDist=distance(x+1,y,shape.i,shape.j);
+// 			move_i=x+1;
+// 			move_j=y;
+// 		}
+// 	}
+// 	if(x-1>0 && board[x-1][y]!=4 && (x-1!=lastX || y!=lastY ) && !checkGhost(x-1,y)) {
+// 		if(distance(x-1,y,shape.i,shape.j)>maxDist){
+// 			maxDist=distance(x-1,y,shape.i,shape.j);
+// 			move_i=x-1;
+// 			move_j=y;
+// 		}
+// 	}
+// 	if(y+1<19 && board[x][y+1]!=4 && (x!=lastX || y+1!=lastY ) && !checkGhost(x,y+1) ){
+// 		if(distance(x,y+1,shape.i,shape.j)>maxDist){
+// 			maxDist=distance(x,y+1,shape.i,shape.j);
+// 			move_i=x;
+// 			move_j=y+1;
+// 		}
+// 	}
+// 	if(y-1>0 && board[x][y-1]!= 4 && (x!=lastX || y-1!=lastY ) && !checkGhost(x,y-1)){
+// 		if(distance(x,y-1,shape.i,shape.j)>maxDist){
+// 			maxDist=distance(x,y-1,shape.i,shape.j);
+// 			move_i=x;
+// 			move_j=y-1;
+// 		}
+// 	}
+// 	return[move_i,move_j];
+// }
+
+function removeGift() {
+	board[shape.i][shape.j]=board[shape.i][shape.j]-50;
+	movingGift.i=100;
+	movingGift.j=100;
+	document.getElementById("gift").style.display="none";
+
 }
