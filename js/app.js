@@ -703,7 +703,7 @@ function checkCondition() {
 
 }
 
-$("#newGame, #startAgain, #startOver").click(function () {
+$("#newGame, #startAgain, #startOver, #new_Game").click(function () {
 	stop_all();
 	$("#gameOver").hide();
 	$("#winner").hide();
@@ -717,6 +717,7 @@ $("#newGame, #startAgain, #startOver").click(function () {
 	clearInterval(interval_gift);
 
 	window.alert("Start new Game!!!");
+	setTimeout(1000);
 	Start();
 
 });
@@ -738,7 +739,7 @@ $("#newSetting").click(function () {
 	$("#settings_form").show();
 });
 
-$("#new_Game").click(function () {
+/*$("#new_Game").click(function () {
 	stop_all();
 	$("#gameOver").hide();
 	$("#gameOverTime").hide();
@@ -755,7 +756,7 @@ $("#new_Game").click(function () {
 
 	window.alert("Start new Game!!!");
 	Start();
-});
+});*/
 
 $("#set_settings").click(function () {
 	//$('#gameBoard').hide();
