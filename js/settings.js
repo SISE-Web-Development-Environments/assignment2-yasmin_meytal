@@ -6,11 +6,13 @@ var up;
 var right;
 var left;
 var down;
+var temp_txt = "";
+
 
 
 const input_key = document.getElementById('change_key_input');
 input_key.addEventListener('keydown', change_key);
-var temp_txt = "";
+
 var color_p5 = "#ffffff";
 var color_p15 = "#1900ff";
 var color_p25 = "#e52929";
@@ -148,21 +150,21 @@ function startPlay(){
 
 $("#pre_up").click(function() {
     $('#change_key_div').show();
-    tmp_txt = "Up";
+    temp_txt = "Up";
 });
 
 $("#pre_down").click(function() {
     $('#change_key_div').show();
-    tmp_txt = "Down";
+    temp_txt = "Down";
 });
 
 $("#pre_right").click(function() {
     $('#change_key_div').show();
-    tmp_txt = "Right";
+    temp_txt = "Right";
 });
 
 $("#pre_left").click(function() {
     $('#change_key_div').show();
-    tmp_txt = "Left";
+    temp_txt = "Left";
 });
 
