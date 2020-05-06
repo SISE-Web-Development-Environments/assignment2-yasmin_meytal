@@ -436,7 +436,6 @@ function defineBalls() {
 
 
 function gameOver() {
-	stopGame();
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(checkInterval);
@@ -445,19 +444,20 @@ function gameOver() {
 	$('#gameCanvas').hide();
 	lbl_Score.value = score;
 	lbl_Score1.value = score;
-	if(life=0){
+	if(life == 0){
 		$('#gameOver').show();
 	}
 
 	else if(score<100){
-		$('#gameOver').show();
-		alert("You are better than " + score + " points!");
+		$('#gameOverTime').show();
+		//alert("You are better than " + score + " points!");
 	}
 
 	else if(score>=100){
+		play_win();
 		$('#winner').show();
-
 	}
+	stopGame();
 }
 
 
@@ -663,7 +663,7 @@ function checkCondition() {
 	// time_elapsed = Math.floor(Number(time)-currTime/1000);
 
 	if(checkPacmanAndGhost()){
-		play_hit();
+		//play_hit();
 		restart();
 	}
 	else if((time_elapsed<=0 && time_elapsed>-0.4) ){
@@ -901,7 +901,6 @@ function rest_bord() {
 
 function stopGame() {
 	stop_all();
-	life;
 	context;
 	shape = new Object();
 	board;
