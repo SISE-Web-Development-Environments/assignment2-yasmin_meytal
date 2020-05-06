@@ -150,7 +150,7 @@ function UpdatePosition() {
 
 		// alert("Time is up!");
 		gameOver();
-		stop_game_music();
+		stop_all();
 	}
 
 
@@ -426,12 +426,12 @@ function defineBalls() {
 
 
 function gameOver() {
-	stop_game_music();
 	life=1;
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(checkInterval);
 	window.clearInterval(interval_gift);
+	//play_hit();
 	$('#gameBoard').hide();
 	$('#gameOver').show();
 }
@@ -599,6 +599,7 @@ function distance(x1,y1,x2,y2) {
 }
 
 function restart() {
+	play_hit();
 	board[ghost1.i][ghost1.j]=board[ghost1.i][ghost1.j]-6;
 	if(ghosts>1){
 		board[ghost2.i][ghost2.j]=board[ghost2.i][ghost2.j]-7;
@@ -638,7 +639,6 @@ function checkCondition() {
 	// time_elapsed = Math.floor(Number(time)-currTime/1000);
 
 	if(checkPacmanAndGhost()){
-		//play_hit();
 		restart();
 	}
 	else if((time_elapsed<=0 && time_elapsed>-0.4) && score<100){
@@ -647,7 +647,7 @@ function checkCondition() {
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
 		alert("You are better than "+score +" points!");
-		stop_game_music();
+		stop_all();
 		gameOver();
 	}
 	else if(life==0){
@@ -657,7 +657,7 @@ function checkCondition() {
 		window.clearInterval(interval_gift);
 		// alert("Loser!");
 		gameOver();
-		stop_game_music();
+		stop_all();
 	}
 	// else if((time_elapsed<=0 && time_elapsed>-0.4)){
 	// 	window.clearInterval(interval);
@@ -698,13 +698,17 @@ $('#newGame').click(function () {
 });
 
 $("#newSetting").click(function () {
+
 	//$('#gameBoard').hide();
 	stop_all();
 	clearInterval(interval);
 	clearInterval(interval1);
 	clearInterval(checkInterval);
 	clearInterval(interval_gift);
+
+	$('#gameBoard').hide();
 	hidefunc();
+	$("#gameOver").hide();
 
 	$("#game").show();
 	$("#settings").show();
@@ -712,6 +716,7 @@ $("#newSetting").click(function () {
 });
 
 $("#new_Game").click(function () {
+	stop_all();
 	$('#gameBoard').hide();
 	hidefunc();
 	$("#gameOver").hide();

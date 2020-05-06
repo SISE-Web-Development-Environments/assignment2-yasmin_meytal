@@ -14,6 +14,7 @@ function stop_game_music() {
 
 function play_hit() {
     hit.play();
+    hit.loop = false;
 }
 
 function stop_hit() {
