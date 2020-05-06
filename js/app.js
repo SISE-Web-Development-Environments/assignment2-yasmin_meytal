@@ -31,7 +31,7 @@ var movingGift_lastMove=new Object();
 var interval_gift= null;
 
 var clock=new Object();
-var clockShow;
+var poisonCandy=new Object();
 
 //setting from user
 var color_p5 = "#ffffff";
@@ -64,7 +64,7 @@ function Start() {
 	pacmanStartPosition();
 	defineBalls();
 	initClock();
-	clockShow=false;
+	initPoisonCandy();
 	keysDown = {};
 	
 	addEventListener(
@@ -85,7 +85,7 @@ function Start() {
 	interval = setInterval(UpdatePosition, 200);
 	interval1=setInterval(updateGhostPosition,600);
 	checkInterval=setInterval(checkCondition,50);
-	interval_gift = setInterval(UpdateGift, 700);
+	interval_gift = setInterval(UpdateGift, 400);
 	stop_all();
 	play_game_music();
 }
@@ -135,6 +135,12 @@ function UpdatePosition() {
 		clock.j=90;
 		board[shape.i][shape.j] = 0;
 	}
+	if (board[shape.i][shape.j] == 20 ) {
+		score-=20;
+		poisonCandy.i=90;
+		poisonCandy.j=90;
+		board[shape.i][shape.j] = 0;
+	}
 	board[shape.i][shape.j] = 2;
 
 
@@ -154,7 +160,7 @@ function UpdatePosition() {
 	}
 
 
-	else if (numOfEatenFood==balls || score>600) {
+	else if (numOfEatenFood==balls ) {
 		clearInterval(interval);
 		clearInterval(interval1);
 		clearInterval(checkInterval);
@@ -210,6 +216,9 @@ function GetKeyPressed() {
 function Draw() {
 	canvas.width = canvas.width; //clean board
 
+	document.getElementById('p5_ball').style.color=color_p5;
+	document.getElementById("p15_ball").style.color=color_p15;
+	document.getElementById("p25_ball").style.color=color_p25;
 	// updateHearts();
 
 	lblScore.value = score;
@@ -244,23 +253,26 @@ function Draw() {
 				context.fillStyle = "#000080"; //color
 				context.fill();
 			}
-			else if(board[i][j]==6 || board[i][j]==11|| board[i][j]==21 || board[i][j]==31 ||board[i][j]==86){
+			else if(board[i][j]==6 || board[i][j]==11|| board[i][j]==21 || board[i][j]==31 ||board[i][j]==86 ||board[i][j]==26){
 				drawGhost(6);
 			}
-			else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==32 ||board[i][j]==87){
+			else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==32 ||board[i][j]==87 ||board[i][j]==27){
 				drawGhost(7);
 			}
-			else if(board[i][j]==8 || board[i][j]==13|| board[i][j]==23 || board[i][j]==33 ||board[i][j]==88){
+			else if(board[i][j]==8 || board[i][j]==13|| board[i][j]==23 || board[i][j]==33 ||board[i][j]==88 ||board[i][j]==28){
 				drawGhost(8);
 			}
-			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34 ||board[i][j]==89){
+			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34 ||board[i][j]==89 ||board[i][j]==29){
 				drawGhost(9);
 			}
-			else if(board[i][j] == 50 || board[i][j] == 55||board[i][j] == 65||board[i][j] == 75 || board[i][j]==130){
+			else if(board[i][j] == 50 || board[i][j] == 55||board[i][j] == 65||board[i][j] == 75 || board[i][j]==130 ||board[i][j]==70){
 				drawGift();
 			}
 			else if(board[i][j] == 80 ){
 				drawClock();
+			}
+			else if(board[i][j] == 20 ){
+				drawPoisonCandy();
 			}
 		}
 	}
@@ -858,7 +870,13 @@ function initClock() {
 	board[cell[0]][cell[1]]=80;
 }
 
-
-$('#p5_ball').style.color=color_p5;
-$("#p15_ball").style.color=color_p15;
-$("#p25_ball").style.color=color_p25;
+function drawPoisonCandy() {
+	let c = document.getElementById("poisonCandy");
+	context.drawImage(c, poisonCandy.i * 30, poisonCandy.j * 30 - 2, 35, 35);
+}
+function initPoisonCandy() {
+	let cell=findRandomEmptyCell(board);
+	poisonCandy.i=cell[0];
+	poisonCandy.j=cell[1];
+	board[cell[0]][cell[1]]=20;
+}
