@@ -444,6 +444,7 @@ function gameOver() {
 	$('#gameCanvas').hide();
 	lbl_Score.value = score;
 	lbl_Score1.value = score;
+	lbl_Score2.value = score;
 	if(life == 0){
 		$('#gameOver').show();
 	}
@@ -702,7 +703,7 @@ function checkCondition() {
 
 }
 
-$("#newGame, #startAgain").click(function () {
+$("#newGame, #startAgain, #startOver").click(function () {
 	stop_all();
 	$("#gameOver").hide();
 	$("#winner").hide();
@@ -905,11 +906,8 @@ function rest_bord() {
 
 function stopGame() {
 	stop_all();
-	context;
 	shape = new Object();
 	board;
-	score;
-	pac_color;
 	start_time;
 	time_elapsed;
 	interval;
