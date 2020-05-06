@@ -7,13 +7,13 @@ var contactBtn = document.getElementById("menuContact");
 var closeBtnC = document.getElementById("closeContact");
 
 aboutBtn.onclick = function () {
-    hidefunc();
+    rest_bord();
     aboutDialog.style.display = "block";
 }
 
 closeBtn.onclick = function () {
     aboutDialog.style.display = "none";
-    $('#welcome').show();
+    //$('#welcome').show();
 }
 
 window.onclick = function (event) {
@@ -24,13 +24,14 @@ window.onclick = function (event) {
 
 
 contactBtn.onclick = function () {
-    hidefunc();
+    reset();
+    //hidefunc();
     contactDialog.style.display = "block";
 }
 
 closeBtnC.onclick = function () {
     contactDialog.style.display = "none";
-    $('#welcome').show();
+  //  $('#welcome').show();
 }
 
 // ESCAPE key pressed

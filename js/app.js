@@ -153,10 +153,15 @@ function UpdatePosition() {
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
-
-		// alert("Time is up!");
-		gameOver();
 		stop_all();
+		if(score<100){
+
+			play_win();
+			window.alert("Winner!!!");
+			Start();
+		}
+		else { gameOver();}
+
 	}
 
 
@@ -438,6 +443,7 @@ function defineBalls() {
 
 
 function gameOver() {
+	stop_all();
 	life=1;
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
@@ -611,7 +617,7 @@ function distance(x1,y1,x2,y2) {
 }
 
 function restart() {
-	play_hit();
+	//play_hit();
 	board[ghost1.i][ghost1.j]=board[ghost1.i][ghost1.j]-6;
 	if(ghosts>1){
 		board[ghost2.i][ghost2.j]=board[ghost2.i][ghost2.j]-7;
@@ -659,7 +665,6 @@ function checkCondition() {
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
 		alert("You are better than "+score +" points!");
-		stop_all();
 		gameOver();
 	}
 	else if(life==0){
@@ -669,7 +674,7 @@ function checkCondition() {
 		window.clearInterval(interval_gift);
 		// alert("Loser!");
 		gameOver();
-		stop_all();
+
 	}
 	// else if((time_elapsed<=0 && time_elapsed>-0.4)){
 	// 	window.clearInterval(interval);
@@ -880,3 +885,14 @@ function initPoisonCandy() {
 	poisonCandy.j=cell[1];
 	board[cell[0]][cell[1]]=20;
 }
+
+
+function rest_bord() {
+	clearInterval(interval);
+	clearInterval(interval1);
+	clearInterval(interval_gift);
+	clearInterval(checkInterval);
+	if (settings_validate !== null){
+		settings_validate.resetForm();
+	}
+};

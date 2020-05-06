@@ -1,11 +1,13 @@
 $("#menuWelcome").click(function() {
-
+    reset();
+    stop_all();
     hidefunc();
     $('#welcome').show();
 });
 
 $("#login_btn, #menuLogin").click(function() {
-
+    reset();
+    stop_all();
     hidefunc();
     document.getElementById('login_user_name').value = '';
     document.getElementById('login_password').value = '';
@@ -14,7 +16,8 @@ $("#login_btn, #menuLogin").click(function() {
 
 
 $("#register_btn, #menuRegister").click(function() {
-
+    reset();
+    stop_all();
     hidefunc();
     document.getElementById('first_name').value = '';
     document.getElementById('last_name').value = '';
