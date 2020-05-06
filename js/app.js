@@ -67,13 +67,40 @@ function Start() {
 	initPoisonCandy();
 	keysDown = {};
 	
+	// addEventListener(
+	// 	"keydown",
+	// 	function(e) {
+	// 		keysDown[e.keyCode] = true;
+	// 	},
+	// 	false
+	// );
 	addEventListener(
-		"keydown",
-		function(e) {
-			keysDown[e.keyCode] = true;
-		},
-		false
-	);
+		"keydown", function(e) {
+			if(e.code==upKey && shape.j > 0 && board[shape.i][shape.j-1]!=4){
+				keysDown[1]=true;
+				keysDown[2]=false;
+				keysDown[3]=false;
+				keysDown[4]=false;
+			}
+			if(e.code==downKey && shape.j < 19 && board[shape.i][shape.j+1]!=4){
+				keysDown[1]=false;
+				keysDown[2]=true;
+				keysDown[3]=false;
+				keysDown[4]=false;
+			}
+			if(e.code==leftKey && shape.i > 0 && board[shape.i-1][shape.j]!=4){
+				keysDown[1]=false;
+				keysDown[2]=false;
+				keysDown[3]=true;
+				keysDown[4]=false;
+			}
+			if(e.code==rightKey && shape.i < 19 && board[shape.i+1][shape.j]!=4){
+				keysDown[1]=false;
+				keysDown[2]=false;
+				keysDown[3]=false;
+				keysDown[4]=true;
+			}
+		}, false);
 	addEventListener(
 		"keyup",
 		function(e) {
@@ -192,19 +219,19 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[1]) {
 		pac_movement=1;
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[2]) {
 		pac_movement=2;
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[3]) {
 		pac_movement=3;
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[4]) {
 		pac_movement=4;
 		return 4;
 	}
