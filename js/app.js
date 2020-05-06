@@ -32,7 +32,7 @@ var interval_gift= null;
 
 var clock=new Object();
 var poisonCandy=new Object();
-
+var interval_clock;
 //setting from user
 var color_p5 = "#ffffff";
 var color_p15 = "#1900ff";
@@ -113,6 +113,8 @@ function Start() {
 	interval1=setInterval(updateGhostPosition,600);
 	checkInterval=setInterval(checkCondition,50);
 	interval_gift = setInterval(UpdateGift, 400);
+	interval_clock = setInterval(clockRandomPosition, 10000);
+
 	stop_all();
 	play_game_music();
 }
@@ -156,7 +158,7 @@ function UpdatePosition() {
 		score+=50;
 		removeGift();
 	}
-	if (board[shape.i][shape.j] == 80 ) {
+	if (board[shape.i][shape.j] == 80 || board[shape.i][shape.j] == 85 || board[shape.i][shape.j] == 95 || board[shape.i][shape.j] == 105) {
 		start_time.setSeconds(start_time.getSeconds() + 20);
 		clock.i=90;
 		clock.j=90;
@@ -180,6 +182,8 @@ function UpdatePosition() {
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
+		window.clearInterval(interval_clock);
+
 		gameOver();
 
 	}
@@ -190,6 +194,7 @@ function UpdatePosition() {
 		clearInterval(interval1);
 		clearInterval(checkInterval);
 		clearInterval(interval_gift);
+		clearInterval(interval_clock);
 		stop_all();
 		play_win();
 		gameOver();
@@ -292,7 +297,7 @@ function Draw() {
 			else if(board[i][j] == 50 || board[i][j] == 55||board[i][j] == 65||board[i][j] == 75 || board[i][j]==130 ||board[i][j]==70){
 				drawGift();
 			}
-			else if(board[i][j] == 80 ){
+			else if(board[i][j] == 80 || board[i][j] == 85 || board[i][j] == 95 || board[i][j] == 105) {
 				drawClock();
 			}
 			else if(board[i][j] == 20 ){
@@ -466,6 +471,7 @@ function gameOver() {
 	window.clearInterval(interval1);
 	window.clearInterval(checkInterval);
 	window.clearInterval(interval_gift);
+	window.clearInterval(interval_clock);
 	$('#def').hide();
 	$('#gameCanvas').hide();
 	lbl_Score.value = score;
@@ -698,6 +704,7 @@ function checkCondition() {
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
+		window.clearInterval(interval_clock);
 		gameOver();
 	}
 	else if(life==0){
@@ -705,6 +712,7 @@ function checkCondition() {
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
+		window.clearInterval(interval_clock);
 		gameOver();
 
 	}
@@ -741,6 +749,7 @@ $("#newGame, #startAgain, #startOver, #new_Game").click(function () {
 	clearInterval(interval1);
 	clearInterval(checkInterval);
 	clearInterval(interval_gift);
+	clearInterval(interval_clock);
 
 	window.alert("Start new Game!!!");
 	setTimeout(1000);
@@ -756,6 +765,7 @@ $("#newSetting").click(function () {
 	clearInterval(interval1);
 	clearInterval(checkInterval);
 	clearInterval(interval_gift);
+	clearInterval(interval_clock);
 
 	hidefunc();
 	$('#gameBoard').hide();
@@ -791,6 +801,7 @@ $("#set_settings").click(function () {
 	clearInterval(interval1);
 	clearInterval(checkInterval);
 	clearInterval(interval_gift);
+	clearInterval(interval_clock);
 	hidefunc();
 	$('#gameBoard').hide();
 
@@ -926,6 +937,7 @@ function rest_bord() {
 	clearInterval(interval1);
 	clearInterval(interval_gift);
 	clearInterval(checkInterval);
+	clearInterval(interval_clock);
 	if (settings_validate !== null){
 		settings_validate.resetForm();
 	}
@@ -947,6 +959,16 @@ function stopGame() {
 	 ghost4=null;
 	 movingGift = new Object();
 	 interval_gift= null;
+	interval_clock=null;
 	 poisonCandy=new Object();
 
 };
+
+function clockRandomPosition(){
+		var emptyCell = findRandomEmptyCell(board);
+		board[clock.i][clock.j]=board[clock.i][clock.j]-80;
+		board[emptyCell[0]][emptyCell[1]]=board[emptyCell[0]][emptyCell[1]]+80;
+		clock.i=emptyCell[0];
+		clock.j=emptyCell[1];
+
+}
