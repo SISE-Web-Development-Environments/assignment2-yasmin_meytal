@@ -165,8 +165,7 @@ function UpdatePosition() {
 		clearInterval(interval_gift);
 		stop_all();
 		play_win();
-		window.alert("Winner!!!");
-		Start();
+		gameOver();
 	} else {
 		Draw();
 	}
@@ -454,7 +453,7 @@ function gameOver() {
 		//alert("You are better than " + score + " points!");
 	}
 
-	else if(score>=100){
+	else if(score>=100 || numOfEatenFood==balls){
 		play_win();
 		$('#winner').show();
 	}
