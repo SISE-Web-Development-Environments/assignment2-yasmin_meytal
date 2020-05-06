@@ -40,11 +40,12 @@
 <body>
 <menu id="menu">
 	<ul id="menuTitles">
-		<li><a id="menuWelcome" href="#">   Welcome   </a></li>
-		<li><a id="menuRegister" href="#">   Register   </a></li>
-		<li><a id="menuLogin" href="#">   Login   </a></li>
-		<li><a id="menuAbout" href="#" onclick="openAboutDialog()">   About   </a></li>
-		<li><a id="menuContact" href="#" onclick="openAboutDialog()">   Contact   </a></li>
+<!--		<li><img class="logo" id="logo" src="images/logo.png"></li>-->
+		<li><a class="but" id="menuWelcome" href="#">   Welcome   </a></li>
+		<li><a class="but" id="menuRegister" href="#">   Register   </a></li>
+		<li><a class="but" id="menuLogin" href="#">   Login   </a></li>
+		<li><a class="but" id="menuAbout" href="#" onclick="openAboutDialog()">   About   </a></li>
+		<li><a class="but" id="menuContact" href="#" onclick="openAboutDialog()">   Contact   </a></li>
 	</ul>
 </menu>
 
@@ -54,6 +55,7 @@
 
 		<div id="welcome" class="welcome" style="display: block">
 			<div>
+				<img class="image_wel" src="images/back.png">
 				<button class="button_wel" id="login_btn" type="button">Login</button><br>
 				<button class="button_wel" id="register_btn" type="button">Register</button>
 			</div>
@@ -120,7 +122,8 @@
 						<input name="num_balls" id="num_balls" placeholder="Number of balls" type="text"><br><br>
 
 						<label for="num_ghost">Number of ghosts (1-4)</label><br>
-						<input name="num_ghost" id="num_ghost" placeholder="Number of ghosts" type="text"><br><br>
+						<input name="num_ghost" id="num_ghost" placeholder="Number of ghosts" type="text"><br>
+
 
 						<label for="time">Game time in seconds (Biger then 60)</label><br>
 						<input name="time" id="time" placeholder="Time in seconds" type="text"><br><br>
@@ -151,32 +154,48 @@
 			</div>
 
 			<div id="gameBoard" style="display: none" >
+					<div id="def">
+						<label class="brd" for="lblWelcome">WELCOME:</label>
+						<input class="lbrd" id="lblWelcome" type="text" /><br>
 
-					<div >
-						<label for="lblWelcome">WELCOME:</label>
-						<input id="lblWelcome" type="text" />
+						<label class="brd"  id="score" for="lblScore">SCORE:</label>
+						<input class="lbrd" id="lblScore" type="text" /><br>
 
-						<label  id="score" for="lblScore">SCORE:</label>
-						<input id="lblScore" type="text" />
+						<label  class="brd" id="timer" for="lblTime">TIME LEFT:</label>
+						<input  class="lbrd" id="lblTime" type="text" /><br>
 
-						<label  id="timer" for="lblTime">TIME:</label>
-						<input id="lblTime" type="text" />
+						<label  class="brd" id="life" for="lblHeart">LIFE:</label>
+						<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas><br>
+						<img id="heart" src="images/heart.png" style="display: none">
+
+						<p class="brd">BALL COLORS:<br>
+						5 Points Ball COLOR:  <span id="p5_ball">•</span><br>
+						15 Points Ball COLOR:  <span id="p15_ball">•</span><br>
+						25 Points Ball COLOR:  <span id="p25_ball">•</span></canvas><br>
+						</p><br>
+
+						<p class="brd">GIFT: <img src="images/gift.png" style="width: 20px; height: 20px" > add 50 points to your SCORE.</p><br>
+						<p class="brd">CLOCK: <img src="images/clock.png" style="width: 20px; height: 20px" > add 20 seconds for your TIME .</p><br>
 
 <!--						<label id="life">LIFE: </label>-->
-						<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas>
-						<img id="heart" src="images/heart.png" style="display: none">
+
 						<input class="button_game" id="new_Game" type="button" value="New Game">
 						<input class="button_game" id="set_settings" type="button" value="Settings">
 					</div>
 
-				<div id="gameCanvas">
+				<div id="gameCanvas" >
 					<canvas id="canvas" height="600" width="600"></canvas>
 					<img class="ghost" id="gh1" src="images/ghost1.png" style="display: none">
 					<img class="ghost" id="gh2" src="images/ghost2.png" style="display: none">
 					<img class="ghost" id="gh3" src="images/ghost3.png" style="display: none">
 					<img class="ghost" id="gh4" src="images/ghost4.png" style="display: none">
-					<img class="ghost" id="gift" src="images/gift.png" style="display: none">
+					<img class="ghost" id="strong" src="images/strong.gif" style="display: none">
+					<img class="gift" id="gift" src="images/gift.png" style="display: none">
+					<img class="clock" id="clock" src="images/clock.png" style="display: none">
 				</div>
+
+				<br style="clear:both;"/>
+
 
 			</div>
 

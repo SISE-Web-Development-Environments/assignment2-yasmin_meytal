@@ -7,6 +7,7 @@ var right;
 var left;
 var down;
 
+
 const input_key = document.getElementById('change_key_input');
 input_key.addEventListener('keydown', change_key);
 var temp_txt = "";
@@ -88,6 +89,7 @@ function set_values(){
     color_p15 = document.getElementById('point_color_15').value;
     color_p25 = document.getElementById('point_color_25').value;
     saveSettings(color_p5,color_p15,color_p25,balls,ghosts,time);
+
 
 }
 

@@ -1,6 +1,5 @@
 body{
-    background-image: url("../images/back.png");
-    background-size: cover;
+   background-color: black;
 }
 
 
@@ -16,6 +15,7 @@ body{
     left: 0;
     right: 0;
     color: black;
+    height: 40px;
 }
 
 menu ul li
@@ -25,6 +25,10 @@ menu ul li
     border-bottom:none;
     flex: 1 0 auto;
 
+}
+menu ul li .logo{
+    height: 90px;
+    width: 200px;
 }
 menu ul li a{
     color: white;
@@ -59,15 +63,21 @@ h4
 }
 
 footer{
-    position: absolute;
-    bottom: 8px;
+    position: relative;
+    bottom: 10px;
     left: 16px;
     font-size: 18px;
     color: white;
     font-family:Verdana, Geneva, sans-serif;
-
+    display: block;
+    width: 90%;
 
 }
+/*footer {*/
+/*    position: relative;*/
+/*    margin-top: 100px;*/
+/*    width: 100%;*/
+/*}*/
 
 /* dialog background */
 .dialog {
@@ -129,4 +139,27 @@ main #game #gameBoard .button_game{
     color: white;
     border: 0px;
     font-size: 20px;
+}
+
+main #game #gameBoard .brd{
+    font-size: 20px;
+    color: white;
+
+
+}
+main #game #gameBoard .lbrd{
+    size: 15px;
+    font-size: 15px;
+    width: 60px;
+    background-color: black;
+    color: white;
+
+}
+/*#gameCanvas{*/
+/*    float: left;*/
+/*    width: 80%;*/
+/*}*/
+#def{
+    float: left;
+    width: 40%;
 }

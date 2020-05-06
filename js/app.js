@@ -8,6 +8,7 @@ var time_elapsed;
 var interval;
 var interval1;
 var checkInterval;
+
 var pac_movement=6;
 var life=5;
 var upKey;
@@ -24,9 +25,13 @@ var g3_lastMove=null;
 var ghost4=null;
 var g4_lastMove=null;
 
+
 var movingGift = new Object();
 var movingGift_lastMove=new Object();
 var interval_gift= null;
+
+var clock=new Object();
+var clockShow;
 
 //setting from user
 var color_p5 = "#ffffff";
@@ -42,6 +47,7 @@ var numOfEatenFood=0;
 
 $(document).ready(function() {
 	context = canvas.getContext("2d");
+
 	Start();
 });
 
@@ -57,6 +63,8 @@ function Start() {
 	initGift();
 	pacmanStartPosition();
 	defineBalls();
+	initClock();
+	clockShow=false;
 	keysDown = {};
 	
 	addEventListener(
@@ -121,15 +129,28 @@ function UpdatePosition() {
 		score+=50;
 		removeGift();
 	}
+	if (board[shape.i][shape.j] == 80 ) {
+		start_time.setSeconds(start_time.getSeconds() + 20);
+		clock.i=90;
+		clock.j=90;
+		board[shape.i][shape.j] = 0;
+	}
 	board[shape.i][shape.j] = 2;
 
 
 	let currentTime = new Date();
 	let currTime=(currentTime - start_time) ;
-	time_elapsed = time-currTime/1000;
+	time_elapsed = Math.floor(Number(time)-currTime/1000);
 
-	if((time_elapsed<=0 && time_elapsed>-0.4) || life==0){
+	if(Number(time_elapsed)<=0){
+		window.clearInterval(interval);
+		window.clearInterval(interval1);
+		window.clearInterval(checkInterval);
+		window.clearInterval(interval_gift);
+
+		// alert("Time is up!");
 		gameOver();
+		stop_game_music();
 	}
 
 
@@ -220,23 +241,26 @@ function Draw() {
 			}else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 15, center.y - 15, 30, 30);
-				context.fillStyle = "grey"; //color
+				context.fillStyle = "#000080"; //color
 				context.fill();
 			}
-			else if(board[i][j]==6 || board[i][j]==11|| board[i][j]==21 || board[i][j]==31){
+			else if(board[i][j]==6 || board[i][j]==11|| board[i][j]==21 || board[i][j]==31 ||board[i][j]==86){
 				drawGhost(6);
 			}
-			else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==32){
+			else if(board[i][j]==7 || board[i][j]==12|| board[i][j]==22 || board[i][j]==32 ||board[i][j]==87){
 				drawGhost(7);
 			}
-			else if(board[i][j]==8 || board[i][j]==13|| board[i][j]==23 || board[i][j]==33){
+			else if(board[i][j]==8 || board[i][j]==13|| board[i][j]==23 || board[i][j]==33 ||board[i][j]==88){
 				drawGhost(8);
 			}
-			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34){
+			else if(board[i][j]==9 || board[i][j]==14|| board[i][j]==24 || board[i][j]==34 ||board[i][j]==89){
 				drawGhost(9);
 			}
-			else if(board[i][j] == 50 || board[i][j] == 55||board[i][j] == 65||board[i][j] == 75){
+			else if(board[i][j] == 50 || board[i][j] == 55||board[i][j] == 65||board[i][j] == 75 || board[i][j]==130){
 				drawGift();
+			}
+			else if(board[i][j] == 80 ){
+				drawClock();
 			}
 		}
 	}
@@ -446,6 +470,7 @@ function initGhost() {
 		g4_lastMove.i=18;
 		g4_lastMove.j=18;
 	}
+
 }
 
 function drawGhost(x) {
@@ -465,6 +490,7 @@ function drawGhost(x) {
 		g=document.getElementById("gh4");
 		context.drawImage(g,ghost4.i* 30 ,ghost4.j* 30-2 ,35,35);
 	}
+
 }
 
 function checkPacmanAndGhost() {
@@ -521,6 +547,8 @@ function updateGhostPosition(){
 		ghost4.i=move[0];
 		ghost4.j=move[1];
 	}
+
+
 
 	// if(checkPacmanAndGhost()){
 	// 	restart();
@@ -586,7 +614,6 @@ function restart() {
 	pacmanStartPosition();
 	score-=10;
 	life-=1;
-
 }
 
 function checkGhost(i,j){
@@ -606,17 +633,14 @@ function checkGhost(i,j){
 }
 
 function checkCondition() {
-	var currentTime = new Date();
-	let currTime=(currentTime - start_time) ;
-	time_elapsed = time-currTime/1000;
+	// let currentTime = new Date();
+	// let currTime=(currentTime - start_time) ;
+	// time_elapsed = Math.floor(Number(time)-currTime/1000);
 
 	if(checkPacmanAndGhost()){
 		//play_hit();
 		restart();
 	}
-/*	if(shape.i==movingGift.i && shape.j==movingGift.j){
-		score+=50;
-	}*/
 	else if((time_elapsed<=0 && time_elapsed>-0.4) && score<100){
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
@@ -627,7 +651,6 @@ function checkCondition() {
 		gameOver();
 	}
 	else if(life==0){
-		life=1;
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
@@ -636,16 +659,16 @@ function checkCondition() {
 		gameOver();
 		stop_game_music();
 	}
-	else if((time_elapsed<=0 && time_elapsed>-0.4)){
-		window.clearInterval(interval);
-		window.clearInterval(interval1);
-		window.clearInterval(checkInterval);
-		window.clearInterval(interval_gift);
-
-		alert("Time is up!");
-		gameOver();
-		stop_game_music();
-	}
+	// else if((time_elapsed<=0 && time_elapsed>-0.4)){
+	// 	window.clearInterval(interval);
+	// 	window.clearInterval(interval1);
+	// 	window.clearInterval(checkInterval);
+	// 	window.clearInterval(interval_gift);
+	//
+	// 	alert("Time is up!");
+	// 	gameOver();
+	// 	stop_game_music();
+	// }
  	// else if (numOfEatenFood==balls || score>600) {
 		//  	window.clearInterval(interval);
 		// 	window.alert("Game completed");
@@ -818,3 +841,19 @@ function removeGift() {
 	document.getElementById("gift").style.display="none";
 
 }
+
+function drawClock() {
+	let c = document.getElementById("clock");
+	context.drawImage(c, clock.i * 30, clock.j * 30 - 2, 35, 35);
+}
+function initClock() {
+	let cell=findRandomEmptyCell(board);
+	clock.i=cell[0];
+	clock.j=cell[1];
+	board[cell[0]][cell[1]]=80;
+}
+
+
+$('#p5_ball').style.color=color_p5;
+$("#p15_ball").style.color=color_p15;
+$("#p25_ball").style.color=color_p25;

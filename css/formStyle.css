@@ -13,6 +13,12 @@ main div form label{
 
     font-size: 10px;
 }
+main div form #checkbox{
+    font-size: 15px;
+}
+main div form #str_ghost{
+    size: 10px;
+}
 
 main div form .fields input{
     font-family: Verdana, Geneva, sans-serif;
