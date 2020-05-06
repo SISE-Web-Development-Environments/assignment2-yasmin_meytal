@@ -153,14 +153,7 @@ function UpdatePosition() {
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
-		stop_all();
-		if(score<100){
-
-			play_win();
-			window.alert("Winner!!!");
-			Start();
-		}
-		else { gameOver();}
+		gameOver();
 
 	}
 
@@ -443,15 +436,28 @@ function defineBalls() {
 
 
 function gameOver() {
-	stop_all();
-	life=1;
+	stopGame();
 	window.clearInterval(interval);
 	window.clearInterval(interval1);
 	window.clearInterval(checkInterval);
 	window.clearInterval(interval_gift);
-	//play_hit();
-	$('#gameBoard').hide();
-	$('#gameOver').show();
+	$('#def').hide();
+	$('#gameCanvas').hide();
+	lbl_Score.value = score;
+	lbl_Score1.value = score;
+	if(life=0){
+		$('#gameOver').show();
+	}
+
+	else if(score<100){
+		$('#gameOver').show();
+		alert("You are better than " + score + " points!");
+	}
+
+	else if(score>=100){
+		$('#winner').show();
+
+	}
 }
 
 
@@ -617,7 +623,7 @@ function distance(x1,y1,x2,y2) {
 }
 
 function restart() {
-	//play_hit();
+
 	board[ghost1.i][ghost1.j]=board[ghost1.i][ghost1.j]-6;
 	if(ghosts>1){
 		board[ghost2.i][ghost2.j]=board[ghost2.i][ghost2.j]-7;
@@ -657,14 +663,14 @@ function checkCondition() {
 	// time_elapsed = Math.floor(Number(time)-currTime/1000);
 
 	if(checkPacmanAndGhost()){
+		play_hit();
 		restart();
 	}
-	else if((time_elapsed<=0 && time_elapsed>-0.4) && score<100){
+	else if((time_elapsed<=0 && time_elapsed>-0.4) ){
 		window.clearInterval(interval);
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
-		alert("You are better than "+score +" points!");
 		gameOver();
 	}
 	else if(life==0){
@@ -672,7 +678,6 @@ function checkCondition() {
 		window.clearInterval(interval1);
 		window.clearInterval(checkInterval);
 		window.clearInterval(interval_gift);
-		// alert("Loser!");
 		gameOver();
 
 	}
@@ -697,13 +702,12 @@ function checkCondition() {
 
 }
 
-$('#newGame').click(function () {
+$("#newGame, #startAgain").click(function () {
 	stop_all();
-	hidefunc();
 	$("#gameOver").hide();
-	$("#game").show();
 	$("#gameBoard").show();
-
+	$("#def").show();
+	$("#gameCanvas").show();
 	clearInterval(interval);
 	clearInterval(interval1);
 	clearInterval(checkInterval);
@@ -723,9 +727,8 @@ $("#newSetting").click(function () {
 	clearInterval(checkInterval);
 	clearInterval(interval_gift);
 
-	$('#gameBoard').hide();
 	hidefunc();
-	$("#gameOver").hide();
+	$('#gameBoard').hide();
 
 	$("#game").show();
 	$("#settings").show();
@@ -734,11 +737,11 @@ $("#newSetting").click(function () {
 
 $("#new_Game").click(function () {
 	stop_all();
-	$('#gameBoard').hide();
-	hidefunc();
 	$("#gameOver").hide();
-	$("#game").show();
 	$("#gameBoard").show();
+	$("#def").show();
+	$("#gameCanvas").show();
+
 
 	clearInterval(interval);
 	clearInterval(interval1);
@@ -758,7 +761,6 @@ $("#set_settings").click(function () {
 	clearInterval(interval_gift);
 	hidefunc();
 	$('#gameBoard').hide();
-
 
 	$("#game").show();
 	$("#settings").show();
@@ -895,4 +897,28 @@ function rest_bord() {
 	if (settings_validate !== null){
 		settings_validate.resetForm();
 	}
+};
+
+function stopGame() {
+	stop_all();
+	life;
+	context;
+	shape = new Object();
+	board;
+	score;
+	pac_color;
+	start_time;
+	time_elapsed;
+	interval;
+	interval1;
+	checkInterval;
+	upKey;
+	ghost1=new Object();
+	ghost2=null;
+	ghost3=null;
+	 ghost4=null;
+	 movingGift = new Object();
+	 interval_gift= null;
+	 poisonCandy=new Object();
+
 };

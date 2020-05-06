@@ -123,6 +123,8 @@ function getRandomColor() {
 }
 
 $("#random").click(function() {
+    $('#gameBoard').hide();
+    $('#gameOver').hide();
     document.getElementById('num_balls').value = Math.ceil(Math.random() * 41) + 49;
     document.getElementById('num_ghost').value = Math.ceil(Math.random() * 4);
     document.getElementById('time').value = Math.ceil(Math.random() * 121) + 59;
@@ -131,9 +133,12 @@ $("#random").click(function() {
     document.getElementById('point_color_25').value = getRandomColor();
 });
 function startPlay(){
+    $('#gameOver').hide();
     $('#settings').hide();
     $('#game').show();
     $('#gameBoard').show();
+    $('#gameCanvas').show();
+    $('#def').show();
 
 }
 // document.getElementById("startGame").click(function () {
