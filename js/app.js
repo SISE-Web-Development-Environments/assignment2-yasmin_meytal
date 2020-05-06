@@ -705,6 +705,8 @@ function checkCondition() {
 $("#newGame, #startAgain").click(function () {
 	stop_all();
 	$("#gameOver").hide();
+	$("#winner").hide();
+	$("#gameOverTime").hide();
 	$("#gameBoard").show();
 	$("#def").show();
 	$("#gameCanvas").show();
@@ -738,6 +740,8 @@ $("#newSetting").click(function () {
 $("#new_Game").click(function () {
 	stop_all();
 	$("#gameOver").hide();
+	$("#gameOverTime").hide();
+	$("#winner").hide();
 	$("#gameBoard").show();
 	$("#def").show();
 	$("#gameCanvas").show();
