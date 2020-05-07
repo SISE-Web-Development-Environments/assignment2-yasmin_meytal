@@ -157,30 +157,37 @@
 
 			<div id="gameBoard" style="display: none" >
 					<div id="def">
-						<label class="brd" for="lblWelcome">WELCOME:</label>
+						<label class="brd" for="lblWelcome"><strong>WELCOME:</strong></label>
 						<input class="lbrd" id="lblWelcome" type="text" /><br>
 
-						<label class="brd"  id="score" for="lblScore">SCORE:</label>
+						<label class="brd"  id="score" for="lblScore"><strong>SCORE:</strong></label>
 						<input class="lbrd" id="lblScore" type="text" /><br>
 
-						<label  class="brd" id="timer" for="lblTime">TIME LEFT:</label>
+						<label  class="brd" id="timer" for="lblTime"><strong>TIME LEFT:</strong></label>
 						<input  class="lbrd" id="lblTime" type="text" /><br>
 
 						<label  class="brd" id="life" for="lblHeart">LIFE:</label>
 						<canvas id="lblHeart" style="width: 300px; height: 30px"></canvas><br>
 						<img id="heart" src="images/heart.png" style="display: none">
 
-						<p class="brd">BALL COLORS:<br>
+						<p class="brd"><strong>Number of balls in the board:</strong><span id="numBa"></span><br>
 						5 Points Ball COLOR:  <span id="p5_ball">•</span><br>
 						15 Points Ball COLOR:  <span id="p15_ball">•</span><br>
 						25 Points Ball COLOR:  <span id="p25_ball">•</span></canvas><br>
-						</p><br>
+						</p>
 
-						<p class="brd">GIFT: <img src="images/gift.png" style="width: 20px; height: 20px" > add 50 points to your SCORE.</p>
-						<p class="brd">CLOCK: <img src="images/clock.png" style="width: 20px; height: 20px" > add 20 seconds for your TIME .</p>
-						<p class="brd">POISON CANDY: <img src="images/candy.png" style="width: 20px; height: 20px" > drops 20 points form your SCORE .</p>
+						<p id="brb"><strong>Game buttons</strong>:<br>
+							UP: <span id="upButt"></span><br>
+							DOWN: <span id="downButt"></span><br>
+							RIGHT: <span id="rightButt"></span><br>
+							LEFT: <span id="leftButt"></span><br>
 
-<!--						<label id="life">LIFE: </label>-->
+						</p>
+
+						<p class="brd"><strong>GIFT</strong>: <img src="images/gift.png" style="width: 20px; height: 20px" > add 50 points to your SCORE.</p>
+						<p class="brd"><strong>CLOCK:</strong> <img src="images/clock.png" style="width: 20px; height: 20px" > add 20 seconds for your TIME .</p>
+						<p class="brd"><strong>POISON CANDY:</strong> <img src="images/candy.png" style="width: 20px; height: 20px" > drops 20 points form your SCORE .</p>
+
 
 						<input class="button_game" id="new_Game" type="button" value="New Game">
 						<input class="button_game" id="set_settings" type="button" value="Settings">
@@ -258,14 +265,14 @@
 		<img id="contactImage" src="images/contact.png">
 		<h3>Contact With Us!</h3>
 		<P>
-			Yasmin: yasminav@post.bgu.ac.il<br>
-			Meytal: meshumey@post.bgu.ac.il
+			Yasmin: <a href="mailto:yasminav@bgu.ac.il">yasminav@post.bgu.ac.il</a><br>
+			Meytal: <a href="mailto:meshumey@bgu.ac.il">meshumey@post.bgu.ac.il</a>
 		</P>
 		<button id="closeContact" class="close" >Close</button>
 	</div>
 </dialog>
 <footer>
-	Product By Meytal Yaniv & Yasmin Avraham    © 2020
+	Developed By Meytal Yaniv & Yasmin Avraham    © 2020
 </footer>
 <!--<downPage>-->
 <!--	Product By Meytal Yaniv & Yasmin Avraham    © 2020-->

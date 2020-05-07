@@ -73,11 +73,7 @@ footer{
     width: 90%;
 
 }
-/*footer {*/
-/*    position: relative;*/
-/*    margin-top: 100px;*/
-/*    width: 100%;*/
-/*}*/
+
 
 /* dialog background */
 .dialog {
@@ -91,6 +87,7 @@ footer{
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
 }
 
 .aboutContent {
@@ -142,9 +139,8 @@ main #game #gameBoard .button_game{
 }
 
 main #game #gameBoard .brd{
-    font-size: 20px;
+    font-size: 15px;
     color: white;
-
 
 }
 main #game #gameBoard .lbrd{
@@ -162,4 +158,5 @@ main #game #gameBoard .lbrd{
 #def{
     float: left;
     width: 40%;
+
 }

@@ -66,6 +66,7 @@ function Start() {
 	initClock();
 	initPoisonCandy();
 	keysDown = {};
+	initDef();
 	
 	// addEventListener(
 	// 	"keydown",
@@ -248,6 +249,7 @@ function Draw() {
 	document.getElementById('p5_ball').style.color=color_p5;
 	document.getElementById("p15_ball").style.color=color_p15;
 	document.getElementById("p25_ball").style.color=color_p25;
+
 	// updateHearts();
 
 	lblScore.value = score;
@@ -971,4 +973,12 @@ function clockRandomPosition(){
 		clock.i=emptyCell[0];
 		clock.j=emptyCell[1];
 
+}
+
+function initDef(){
+	document.getElementById("numBa").innerText=" "+balls;
+	document.getElementById("upButt").innerText=" "+upKey;
+	document.getElementById("downButt").innerText=" "+downKey;
+	document.getElementById("rightButt").innerText=" "+rightKey;
+	document.getElementById("leftButt").innerText=" "+leftKey;
 }
